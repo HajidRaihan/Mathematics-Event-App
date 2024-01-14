@@ -17,8 +17,8 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: rgb(115, 192, 128);
-            background: linear-gradient(90deg, rgba(115, 192, 128, 1) 0%, rgba(200, 234, 209, 1) 50%);
+            /* background: rgb(115, 192, 128);
+            background: linear-gradient(90deg, rgba(115, 192, 128, 1) 0%, rgba(200, 234, 209, 1) 50%); */
         }
     </style>
     @vite('resources/css/app.css')

@@ -20,3 +20,12 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+
+Route::get('/pendaftaran', function () {
+    return view('pendaftaran');
+});
+
+Route::get('/admin/dashboard', function () {
+    return view('dashboard');
+});
