@@ -30,9 +30,9 @@
             <p>logo</p>
         </div>
         <div class="flex gap-5 uppercase text-primary font-semibold">
-            <a href="">Home</a>
+            <a href="{{route('home')}}">Home</a>
             <a href="">Pengumuman</a>
-            <a href="">pendaftaran</a>
+            <a href="{{route('pendaftaran')}}">pendaftaran</a>
         </div>
     </nav>
 
