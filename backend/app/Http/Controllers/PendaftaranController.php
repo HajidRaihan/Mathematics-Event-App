@@ -16,7 +16,8 @@ class PendaftaranController extends Controller
      */
     public function pendaftaran()
     {
-        return view('pendaftaran');
+        $instansis= Instansi::all();
+        return view('pendaftaran',['instansis'=>$instansis]);
     }
 
     public function instansi()
