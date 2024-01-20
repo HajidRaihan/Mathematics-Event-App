@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pesertas', function (Blueprint $table) {
+        Schema::create('siswas', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->date('tanggal_lahir');
-            $table->string('nisn/nim')->unique();
+            $table->string('nisn')->unique();
             $table->string('jenis_kelamin');
-            $table->string('jenjang_pendidikan');
-            $table->string('sekolah/universitas');
-            $table->bigInteger('kelas/semester');
+            $table->UnsignedBigInteger('instansi_id');
             $table->string('kontak');
             $table->string('email');
             $table->string('foto',2048);
+            $table->string('username');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pesertas');
+        Schema::dropIfExists('siswas');
     }
 };

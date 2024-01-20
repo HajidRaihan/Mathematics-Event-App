@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\PendaftaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +22,12 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/pendaftaran', [UserController::class,'pendaftaran'])->name('pendaftaran');
-Route::post('/add_peserta',[UserController::class,'add_peserta'])->name('add_peserta');
+Route::get('/pendaftaran', [PendaftaranController::class,'pendaftaran'])->name('pendaftaran');
+Route::get('pendaftaran_instansi',[PendaftaranController::class,'instansi'])->name('instansi');
+Route::post('/add_instansi',[PendaftaranController::class,'add_instansi'])->name('add_instansi');
+Route::post('/add_siswa',[PendaftaranController::class,'add_siswa'])->name('add_peserta');
+Route::post('/add_mahasiswa',[PendaftaranController::class,'add_mahasiswa'])->name('add_mahasiswa');
+Route::post('/add_lkti',[PendaftaranController::class,'add_lkti'])->name('add_lkti');
 
 Route::get('/admin/dashboard', function () {
     return view('dashboard');

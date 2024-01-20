@@ -2,21 +2,16 @@
 
 @section('content')
     <div class="mt-10 flex flex-col mx-52 gap-3">
-        <form class="flex flex-col gap-5 w-[500px]" action="{{url('add_peserta')}}" enctype="multipart/form-data" method="POST">
+        <form class="flex flex-col gap-5 w-[500px]" action="{{url('add_siswa')}}" enctype="multipart/form-data" method="POST">
             @csrf
             <div>
                 <label for="nama" class="text-primary font-bold">Nama</label>
                 <input type="text" id="nama" name="nama" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3" @required(true)>
             </div>
             <div>
-                <label for="nama" class="text-primary font-bold">NISN/NIM</label>
-                <input type="text" id="nim" name="nisn/nim" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3" @required(true)>
+                <label for="nama" class="text-primary font-bold">NISN</label>
+                <input type="text" id="nim" name="nisn" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3" @required(true)>
             </div>
-            <div class="flex gap-3">
-                <div>
-                    <label for="tanggal" class="text-primary font-bold">Tanggal Lahir</label>
-                    <input type="date" id="tanggal" name="tanggal_lahir" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3" @required(true)>
-                </div>
                 <div>
                     <label for="jenis_kelamin" class="text-primary font-bold">Jenis Kelamin</label>
                     <select name="jenis_kelamin" id="jenis_kelamin"
@@ -25,25 +20,14 @@
                         <option value="perempuan">Perempuan</option>
                     </select>
                 </div>
-            </div>
-            <div class="flex gap-3">
-                <div>
-                    <label for="jenjang" class="text-primary font-bold">Jenjang Pendidikan</label>
-                    <select name="jenjang_pendidikan" id="jenjang"
-                        class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary px-3">
-                        <option value="mahasiswa">Mahasiswa</option>
-                        <option value="sma">SMA</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="jenjang" class="text-primary font-bold">Kelas/semester</label>
-                    <input type="number" id="jenjang" name="kelas/semester"
-                        class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3">
-                </div>
+            <div>
+                <label for="jenjang" class="text-primary font-bold">Kelas</label>
+                <input type="number" id="jenjang" name="kelas"
+                    class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3">
             </div>
             <div>
-                <label for="sekolah" class="text-primary font-bold">Nama Sekolah/Universitas</label>
-                <input type="text" id="sekolah" name="sekolah/universitas" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3">
+                <label for="sekolah" class="text-primary font-bold">Nama Sekolah</label>
+                <input type="text" id="sekolah" name="sekolah" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3">
             </div>
             <div>
                 <label for="kontak" class="text-primary font-bold">Kontak Whatsapp</label>

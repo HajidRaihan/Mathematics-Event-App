@@ -33,6 +33,7 @@
             <a href="{{route('home')}}">Home</a>
             <a href="">Pengumuman</a>
             <a href="{{route('pendaftaran')}}">pendaftaran</a>
+            <a href="{{route('instansi')}}">instansi</a>
         </div>
     </nav>
 
