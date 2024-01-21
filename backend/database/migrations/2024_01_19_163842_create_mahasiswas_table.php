@@ -29,7 +29,9 @@ return new class extends Migration
             $table->string('username');
             $table->string('status')->nullable();
             $table->timestamps();
+            $table->foreign('instansi_id')->references('id')->on('instansis');
         });
+
     }
 
     /**
