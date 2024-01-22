@@ -1,0 +1,115 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Models\Siswa;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class SiswaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $data = Siswa::orderBy('id','asc')->get();
+        return response()->json([
+            'status'=>true,
+            'message'=>'Data Ditemukan',
+            'data'=>$data
+        ],200);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $rules =[
+            'nama'=>'required',
+            'nisn'=>'required',
+            'jenis_kelamin'=>'required',
+            'instansi_id'=>'required',
+            'kontak'=>'required',
+            'email'=>'required',
+            'foto'=>'required|image|mimes:jpeg,png,jpg|max:2048',
+            'username'=>'required',
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if($validator->fails()){
+            return response()->json([
+                'status'=>false,
+                'message'=>'Gagal Memasukkan Data',
+                'data'=>$validator->errors()
+            ]);
+        }
+
+        $fotoPath = $request->file('foto')->store('uploads', 'public');
+        Siswa::create([
+            'nama'=>$request->input('nama'),
+            'nisn'=>$request->input('nisn'),
+            'jenis_kelamin'=>$request->input('jenis_kelamin'),
+            'instansi_id'=>$request->input('instansi_id'),
+            'kontak'=>$request->input('kontak'),
+            'email'=>$request->input('email'),
+            'username'=>$request->input('username'),
+            'foto'=>$fotoPath,
+        ]);
+        return response()->json([
+            'status'=>true,
+            'message'=>'Sukses Memasukkan Data'
+        ],200);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $data = Siswa::find($id);
+        if($data){
+            return response()->json([
+                'status'=>true,
+                'message'=>'Data Ditemukan',
+                'data'=>$data
+            ],200);
+        }else{
+            return response()->json([
+                'status'=>false,
+                'message'=>'Data Tidak Ditemukan'
+            ],404);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $data= Siswa::find($id);
+        if(empty($data)){
+            return response()->json([
+                'status'=>false,
+                'message'=>'Data Tidak Ditemukan'
+            ],404);
+        }else{
+            $data->delete();
+            return response()->json([
+                'status'=>true,
+                'message'=>'Sukses Mengapus Data'
+            ]);
+        }
+    }
+}

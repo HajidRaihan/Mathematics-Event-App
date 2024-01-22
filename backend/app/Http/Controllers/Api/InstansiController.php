@@ -59,7 +59,7 @@ class InstansiController extends Controller
         return response()->json([
             'status'=>true,
             'message'=>'Sukses Memasukkan Data'
-        ]);
+        ],200);
     }
 
     /**

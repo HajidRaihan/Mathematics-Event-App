@@ -57,7 +57,7 @@ class PendaftaranController extends Controller
     public function add_siswa(Request $request)
     {
         $request->validate([
-            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $fotoPath = $request->file('foto')->store('uploads', 'public');
@@ -78,7 +78,8 @@ class PendaftaranController extends Controller
     public function add_mahasiswa(Request $request)
     {
         $request->validate([
-            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto_1' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto_2' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $fotoPath1 = $request->file('foto_1')->store('uploads', 'public');
@@ -106,7 +107,9 @@ class PendaftaranController extends Controller
     public function add_lkti(Request $request)
     {
         $request->validate([
-            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto_1' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto_2' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto_3' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $fotoPath1 = $request->file('foto_1')->store('uploads', 'public');
