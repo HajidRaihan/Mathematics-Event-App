@@ -12,6 +12,6 @@
             quo voluptate iure
             voluptatum.
         </p>
-        <button class="w-[300px] text-primary uppercase text-base py-1 bg-white rounded-xl font-semibold">Login</button>
+        <a class="w-[300px] text-primary uppercase text-base py-1 bg-white rounded-xl font-semibold" href="{{route('login')}}">Login</a>
     </div>
 @endsection

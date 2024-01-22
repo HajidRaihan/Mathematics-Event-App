@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('nim_1')->unique();
             $table->string('nim_2')->unique();
             $table->string('nim_3')->nullable()->unique();
+            $table->string('jenis_kelamin_1');
+            $table->string('jenis_kelamin_2');
+            $table->string('jenis_kelamin_3')->nullable();
             $table->UnsignedBigInteger('instansi_id');
             $table->string('kontak_1');
             $table->string('kontak_2');

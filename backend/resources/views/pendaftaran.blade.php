@@ -9,7 +9,7 @@
                 <input type="text" id="nama" name="nama" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3" @required(true)>
             </div>
             <div>
-                <label for="nama" class="text-primary font-bold">NISN</label>
+                <label for="nisn" class="text-primary font-bold">NISN</label>
                 <input type="text" id="nim" name="nisn" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3" @required(true)>
             </div>
                 <div>
@@ -32,15 +32,15 @@
                 </select>
             </div>
             <div>
-                <label for="sekolah" class="text-primary font-bold">Kontak WA</label>
+                <label for="kontak" class="text-primary font-bold">Kontak WA</label>
                 <input type="text" id="kontak" name="kontak" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3" @required(true)>
             </div>
             <div>
-                <label for="kontak" class="text-primary font-bold">Email</label>
-                <input type="text" id="email" name="email" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3 " @required(true)>
+                <label for="email" class="text-primary font-bold">Email</label>
+                <input type="email" id="email" name="email" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3 " @required(true)>
             </div>
             <div>
-                <label for="email" class="text-primary font-bold">Username</label>
+                <label for="username" class="text-primary font-bold">Username</label>
                 <input type="text" id="username" name="username" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3" @required(true)>
             </div>
             <div class="flex flex-col">

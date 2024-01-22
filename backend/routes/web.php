@@ -20,10 +20,12 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 
-Route::get('/pendaftaran', [PendaftaranController::class,'pendaftaran'])->name('pendaftaran');
-Route::get('pendaftaran_instansi',[PendaftaranController::class,'instansi'])->name('instansi');
+Route::get('/pendaftaran/siswa', [PendaftaranController::class,'pendaftaran'])->name('pendaftaran');
+Route::get('/pendaftaran/mahasiswa',[PendaftaranController::class,'mahasiswa'])->name('mahasiswa');
+Route::get('/pendaftaran/lkti',[PendaftaranController::class,'lkti'])->name('lkti');
+Route::get('pendaftaran/instansi',[PendaftaranController::class,'instansi'])->name('instansi');
 Route::post('/add_instansi',[PendaftaranController::class,'add_instansi'])->name('add_instansi');
 Route::post('/add_siswa',[PendaftaranController::class,'add_siswa'])->name('add_peserta');
 Route::post('/add_mahasiswa',[PendaftaranController::class,'add_mahasiswa'])->name('add_mahasiswa');

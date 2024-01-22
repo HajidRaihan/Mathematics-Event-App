@@ -32,8 +32,10 @@
         <div class="flex gap-5 uppercase text-primary font-semibold">
             <a href="{{route('home')}}">Home</a>
             <a href="">Pengumuman</a>
-            <a href="{{route('pendaftaran')}}">pendaftaran</a>
+            <a href="{{route('pendaftaran')}}">siswa</a>
             <a href="{{route('instansi')}}">instansi</a>
+            <a href="{{route('mahasiswa')}}">mahasiswa</a>
+            <a href="{{route('lkti')}}">lkti</a>
         </div>
     </nav>
 

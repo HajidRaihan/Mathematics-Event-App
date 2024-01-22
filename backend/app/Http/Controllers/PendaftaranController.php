@@ -25,6 +25,18 @@ class PendaftaranController extends Controller
         return view('instansi');
     }
 
+    public function mahasiswa()
+    {
+        $instansis= Instansi::all();
+        return view('mahasiswa',['instansis'=>$instansis]);
+    }
+
+    public function lkti()
+    {
+        $instansis= Instansi::all();
+        return view('lkti',['instansis'=>$instansis]);
+    }
+
     public function add_instansi(Request $request)
     {
         Instansi::create([
@@ -69,7 +81,8 @@ class PendaftaranController extends Controller
             'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $fotoPath = $request->file('foto')->store('uploads', 'public');
+        $fotoPath1 = $request->file('foto_1')->store('uploads', 'public');
+        $fotoPath2 = $request->file('foto_2')->store('uploads', 'public');
 
         Mahasiswa::create([
             'anggota_1'=>$request->input('anggota_1'),
@@ -84,8 +97,8 @@ class PendaftaranController extends Controller
             'email_1'=>$request->input('email_1'),
             'email_2'=>$request->input('email_2'),
             'username'=>$request->input('username'),
-            'foto_1'=>$fotoPath,
-            'fot0_2'=>$fotoPath,
+            'foto_1'=>$fotoPath1,
+            'foto_2'=>$fotoPath2,
         ]);
         return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
@@ -96,7 +109,15 @@ class PendaftaranController extends Controller
             'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $fotoPath = $request->file('foto')->store('uploads', 'public');
+        $fotoPath1 = $request->file('foto_1')->store('uploads', 'public');
+        $fotoPath2 = $request->file('foto_2')->store('uploads', 'public');
+
+        if ($request->hasFile('foto_3')){
+            $fotoPath3 = $request->file('foto_3')->store('uploads', 'public');
+        }else{
+            $fotoPath3 = null;
+        }
+
 
         Lkti::create([
             'anggota_1'=>$request->input('anggota_1'),
@@ -116,9 +137,9 @@ class PendaftaranController extends Controller
             'email_2'=>$request->input('email_2'),
             'email_3'=>$request->input('email_3'),
             'username'=>$request->input('username'),
-            'foto_1'=>$fotoPath,
-            'foto_2'=>$fotoPath,
-            'foto_3'=>$fotoPath,
+            'foto_1'=>$fotoPath1,
+            'foto_2'=>$fotoPath2,
+            'foto_3'=>$fotoPath3,
         ]);
         return redirect()->back()->with('success', 'Data berhasil disimpan');
     }

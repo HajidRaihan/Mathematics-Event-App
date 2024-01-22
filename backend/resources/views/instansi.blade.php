@@ -37,7 +37,7 @@
         </div>
         <div>
             <label for="email" class="text-primary font-bold">Email Pendamping</label>
-            <input type="text" id="email_pendamping" name="email_pendamping" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3">
+            <input type="email" id="email_pendamping" name="email_pendamping" class="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3">
         </div>
         <button class="rounded-xl border-2 border-primary h-10 w-40 font-semibold text-primary" type="submit" value="submit">Submit</button>
     </form>
