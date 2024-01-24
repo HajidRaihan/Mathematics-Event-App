@@ -40,8 +40,8 @@ class LktiController extends Controller
             'email_1'=>'required',
             'email_2'=>'required',
             'username'=>'required',
-            'foto_1' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'foto_2' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto_1' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_2' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'foto_3' => 'image|mimes:jpeg,png,jpg|max:2048',
         ];
 
