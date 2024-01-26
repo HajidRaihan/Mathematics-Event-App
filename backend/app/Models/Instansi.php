@@ -18,8 +18,16 @@ class Instansi extends Model
         'kontak_pendamping',
         'email_pendamping',
     ];
-    public function instansi(): HasMany
+    public function mahasiswas(): HasMany
     {
-        return $this->hasMany(Instansi::class);
+        return $this->hasMany(Mahasiswa::class);
+    }
+    public function lktis(): HasMany
+    {
+        return $this->hasMany(Lkti::class);
+    }
+    public function siswas(): HasMany
+    {
+        return $this->hasMany(Lkti::class);
     }
 }

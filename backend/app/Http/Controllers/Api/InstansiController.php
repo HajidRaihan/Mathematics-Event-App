@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Instansi;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -135,18 +137,33 @@ class InstansiController extends Controller
      */
     public function destroy(string $id)
     {
-        $data= Instansi::find($id);
-        if(empty($data)){
-            return response()->json([
-                'status'=>false,
-                'message'=>'Data Tidak Ditemukan'
-            ],404);
-        }else{
+        try {
+            $data = Instansi::findOrFail($id);
+
             $data->delete();
+
             return response()->json([
-                'status'=>true,
-                'message'=>'Sukses Mengapus Data'
+                'status' => true,
+                'message' => 'Data berhasil dihapus'
             ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan'
+            ], 404);
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Tidak dapat menghapus data karena memiliki relasi dengan data lain.'
+                ], 422);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Terjadi kesalahan saat menghapus data.'
+                ], 500);
+            }
         }
+
     }
 }
