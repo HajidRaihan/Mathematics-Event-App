@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Siswa;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -47,22 +48,37 @@ class SiswaController extends Controller
                 'data'=>$validator->errors()
             ]);
         }
+        try{
+            $fotoPath = $request->file('foto')->store('uploads', 'public');
+            Siswa::create([
+                'nama'=>$request->input('nama'),
+                'nisn'=>$request->input('nisn'),
+                'jenis_kelamin'=>$request->input('jenis_kelamin'),
+                'instansi_id'=>$request->input('instansi_id'),
+                'kontak'=>$request->input('kontak'),
+                'email'=>$request->input('email'),
+                'username'=>$request->input('username'),
+                'foto'=>$fotoPath,
+            ]);
+            return response()->json([
+                'status'=>true,
+                'message'=>'Sukses Memasukkan Data'
+            ],200);
+        }catch(QueryException $e){
+            if ($e->errorInfo[1] === 1452) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Tidak dapat menambahkan data, instansi_id tidak ditemukan.'
+                ], 422);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Data sudah terdaftar.'
+                ], 500);
+            }
+        }
 
-        $fotoPath = $request->file('foto')->store('uploads', 'public');
-        Siswa::create([
-            'nama'=>$request->input('nama'),
-            'nisn'=>$request->input('nisn'),
-            'jenis_kelamin'=>$request->input('jenis_kelamin'),
-            'instansi_id'=>$request->input('instansi_id'),
-            'kontak'=>$request->input('kontak'),
-            'email'=>$request->input('email'),
-            'username'=>$request->input('username'),
-            'foto'=>$fotoPath,
-        ]);
-        return response()->json([
-            'status'=>true,
-            'message'=>'Sukses Memasukkan Data'
-        ],200);
+
     }
 
     /**

@@ -50,7 +50,7 @@ class InstansiController extends Controller
         }
 
         Instansi::create([
-            'instansi'=>$request->input('instansi'),
+            'instansi'=>strtoupper($request->input('instansi')),
             'jenjang'=>$request->input('jenjang'),
             'provinsi'=>$request->input('provinsi'),
             'kota/kabupaten'=>$request->input('kota/kabupaten'),

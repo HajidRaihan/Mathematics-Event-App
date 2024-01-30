@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lkti;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -54,40 +55,54 @@ class LktiController extends Controller
                 'data'=>$validator->errors()
             ]);
         }
-
-        $fotoPath1 = $request->file('foto_1')->store('uploads', 'public');
-        $fotoPath2 = $request->file('foto_2')->store('uploads', 'public');
-        if ($request->hasFile('foto_3')){
-            $fotoPath3 = $request->file('foto_3')->store('uploads', 'public');
-        }else{
-            $fotoPath3 = null;
+        try{
+            $fotoPath1 = $request->file('foto_1')->store('uploads', 'public');
+            $fotoPath2 = $request->file('foto_2')->store('uploads', 'public');
+            if ($request->hasFile('foto_3')){
+                $fotoPath3 = $request->file('foto_3')->store('uploads', 'public');
+            }else{
+                $fotoPath3 = null;
+            }
+            Lkti::create([
+                'anggota_1'=>$request->input('anggota_1'),
+                'anggota_2'=>$request->input('anggota_2'),
+                'anggota_3'=>$request->input('anggota_3'),
+                'nim_1'=>$request->input('nim_1'),
+                'nim_2'=>$request->input('nim_2'),
+                'nim_3'=>$request->input('nim_3'),
+                'jenis_kelamin_1'=>$request->input('jenis_kelamin_1'),
+                'jenis_kelamin_2'=>$request->input('jenis_kelamin_2'),
+                'jenis_kelamin_3'=>$request->input('jenis_kelamin_3'),
+                'instansi_id'=>$request->input('instansi_id'),
+                'kontak_1'=>$request->input('kontak_1'),
+                'kontak_2'=>$request->input('kontak_2'),
+                'kontak_3'=>$request->input('kontak_3'),
+                'email_1'=>$request->input('email_1'),
+                'email_2'=>$request->input('email_2'),
+                'email_3'=>$request->input('email_3'),
+                'username'=>$request->input('username'),
+                'foto_1'=>$fotoPath1,
+                'foto_2'=>$fotoPath2,
+                'foto_3'=>$fotoPath3,
+            ]);
+            return response()->json([
+                'status'=>true,
+                'message'=>'Sukses Memasukkan Data'
+            ],200);
+        }catch(QueryException $e){
+            if ($e->errorInfo[1] === 1452) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Tidak dapat menambahkan data, instansi_id tidak ditemukan.'
+                ], 422);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Data sudah terdaftar.'
+                ], 500);
+            }
         }
-        Lkti::create([
-            'anggota_1'=>$request->input('anggota_1'),
-            'anggota_2'=>$request->input('anggota_2'),
-            'anggota_3'=>$request->input('anggota_3'),
-            'nim_1'=>$request->input('nim_1'),
-            'nim_2'=>$request->input('nim_2'),
-            'nim_3'=>$request->input('nim_3'),
-            'jenis_kelamin_1'=>$request->input('jenis_kelamin_1'),
-            'jenis_kelamin_2'=>$request->input('jenis_kelamin_2'),
-            'jenis_kelamin_3'=>$request->input('jenis_kelamin_3'),
-            'instansi_id'=>$request->input('instansi_id'),
-            'kontak_1'=>$request->input('kontak_1'),
-            'kontak_2'=>$request->input('kontak_2'),
-            'kontak_3'=>$request->input('kontak_3'),
-            'email_1'=>$request->input('email_1'),
-            'email_2'=>$request->input('email_2'),
-            'email_3'=>$request->input('email_3'),
-            'username'=>$request->input('username'),
-            'foto_1'=>$fotoPath1,
-            'foto_2'=>$fotoPath2,
-            'foto_3'=>$fotoPath3,
-        ]);
-        return response()->json([
-            'status'=>true,
-            'message'=>'Sukses Memasukkan Data'
-        ],200);
+
     }
 
     /**
