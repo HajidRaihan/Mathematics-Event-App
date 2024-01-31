@@ -1,11 +1,29 @@
 import AdminNav from "../../components/AdminNav";
 import DataTable from "react-data-table-component";
+import { useEffect, useState } from "react";
+import { RequestApi } from "../../helper/RequestApi";
 
 const DaftarPeserta = () => {
+  const [dataPeserta, setDataPeserta] = useState();
+  useEffect(() => {
+    const getInstansi = async () => {
+      const res = await RequestApi("GET", `siswa`, {}, {}, "Mencoba Mengambil Data Instansi");
+
+      setDataPeserta(res.data);
+      console.log(res.data);
+    };
+    getInstansi();
+  }, []);
   const columns = [
     {
       name: "Foto",
-      selector: (row) => <img src={row.foto} alt="" className="w-20 h-20 rounded-full my-3" />,
+      selector: (row) => (
+        <img
+          src={`http://localhost:8000/api/${row.foto}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3"
+        />
+      ),
     },
     {
       name: "Nama",
@@ -17,11 +35,11 @@ const DaftarPeserta = () => {
     },
     {
       name: "Gender",
-      selector: (row) => row.gender,
+      selector: (row) => row.jenis_kelamin,
     },
     {
       name: "Sekolah",
-      selector: (row) => row.sekolah,
+      selector: (row) => row.instansi,
     },
     {
       name: "Kontak WA",
@@ -29,11 +47,11 @@ const DaftarPeserta = () => {
     },
     {
       name: "Email",
-      selector: (row) => row.kontak,
+      selector: (row) => row.email,
     },
     {
       name: "Username",
-      selector: (row) => row.kontak,
+      selector: (row) => row.username,
     },
   ];
 
@@ -153,7 +171,7 @@ const DaftarPeserta = () => {
     <div className="flex">
       <AdminNav />
       <div className="w-full">
-        <DataTable columns={columns} data={data} fixedHeader />
+        <DataTable columns={columns} data={dataPeserta} fixedHeader />
       </div>
     </div>
   );
