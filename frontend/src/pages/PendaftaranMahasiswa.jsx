@@ -10,8 +10,6 @@ const PendaftaranMahasiswa = () => {
   const [nama2, setNama2] = useState("");
   const [nim1, setNim1] = useState("");
   const [nim2, setnim2] = useState("");
-  const [gender1, setGender1] = useState("");
-  const [gender2, setGender2] = useState("");
   const [instansi, setInstansi] = useState("");
   const [email1, setEmail1] = useState("");
   const [email2, setEmail2] = useState("");
@@ -21,6 +19,8 @@ const PendaftaranMahasiswa = () => {
   const [foto1, setFoto1] = useState();
   const [foto2, setFoto2] = useState();
   const [listInstansi, setListInstansi] = useState();
+  const [fotoPreview1, setFotoPreview1] = useState();
+  const [fotoPreview2, setFotoPreview2] = useState();
 
   const genderOptionHandler1 = (e) => setGenderOption1(e.target.value);
   const genderOptionHandler2 = (e) => setGenderOption2(e.target.value);
@@ -40,35 +40,27 @@ const PendaftaranMahasiswa = () => {
 
     console.log("clicked");
 
-    const formData = new FormData();
-    formData.append("anggota_1", nama1);
-    formData.append("anggota_2", nama2);
-    formData.append("nim_1", nim1);
-    formData.append("nim_2", nim2);
-    formData.append("jenis_kelamin_1", genderOption1);
-    formData.append("jenis_kelamin_2", genderOption2);
-    formData.append("instansi_id", instansi);
-    formData.append("kontak_1", kontak1);
-    formData.append("kontak_2", kontak2);
-    formData.append("email_1", email1);
-    formData.append("email_2", email2);
-    formData.append("username", username);
-    formData.append("foto_1", foto1);
-    formData.append("foto_2", foto2);
+    const data = {
+      anggota_1: nama1,
+      anggota_2: nama2,
+      nim_1: nim1,
+      nim_2: nim2,
+      jenis_kelamin_1: genderOption1,
+      jenis_kelamin_2: genderOption2,
+      instansi_id: instansi,
+      kontak_1: kontak1,
+      kontak_2: kontak2,
+      email_1: email1,
+      email_2: email2,
+      username: username,
+      foto_1: foto1,
+      foto_2: foto2,
+    };
 
-    console.log({ formData });
+    console.log({ data });
 
     try {
-      const res = await RequestApi(
-        "POST",
-        `mahasiswa`,
-        formData,
-        {
-          // You may need to set headers, for example:
-          // 'Content-Type': 'multipart/form-data'
-        },
-        "Mencoba Menyimpan Data Instansi"
-      );
+      const res = await RequestApi("POST", `mahasiswa`, data, {}, "Mencoba Menyimpan Data Peserta");
 
       console.log("data berhasil di simpan", res);
     } catch (error) {
@@ -77,55 +69,31 @@ const PendaftaranMahasiswa = () => {
     }
   };
 
-  //   const pendaftaranHandler = async (e) => {
-  //     e.preventDefault();
-
-  //     console.log("clicked");
-
-  //     const data = {
-  //       anggota_1: nama1,
-  //       anggota_2: nama2,
-  //       nim_1: nim1,
-  //       nim_2: nim2,
-  //       jenis_kelamin_1: genderOption1,
-  //       jenis_kelamin_2: genderOption2,
-  //       instansi_id: instansi,
-  //       kontak_1: kontak1,
-  //       kontak_2: kontak2,
-  //       email_1: email1,
-  //       email_2: email2,
-  //       username: username,
-  //       foto_1: foto1,
-  //       foto_2: foto2,
-  //     };
-
-  //     console.log({ foto2 });
-
-  //     console.log({ data });
-
-  //     try {
-  //       const res = await RequestApi(
-  //         "POST",
-  //         `mahasiswa`,
-  //         data,
-  //         {},
-  //         "Mencoba Menyimpan Data Instansi"
-  //       );
-
-  //       console.log("data berhasil di simpan", res);
-  //     } catch (error) {
-  //       console.log(error);
-  //       throw error;
-  //     }
-  //   };
-
   const fotoOnChange1 = (e) => {
-    console.log(e.target.files);
-    setFoto1(e.target.files);
+    const file = e.target.files;
+    setFoto1(e.target.files[0]);
+
+    if (e.target.files && e.target.files[0]) {
+      setFotoPreview1(URL.createObjectURL(e.target.files[0]));
+    }
   };
+
+  const removeImage1 = (e) => {
+    setFoto1(null);
+    setFotoPreview1(null);
+  };
+
+  const removeImage2 = (e) => {
+    setFoto2(null);
+    setFotoPreview2(null);
+  };
+
   const fotoOnChange2 = (e) => {
-    console.log(e.target.files);
-    setFoto2(e.target.files);
+    const file = e.target.files;
+    setFoto2(e.target.files[0]);
+    if (e.target.files && e.target.files[0]) {
+      setFotoPreview2(URL.createObjectURL(e.target.files[0]));
+    }
   };
 
   return (
@@ -168,7 +136,7 @@ const PendaftaranMahasiswa = () => {
                     value="laki-laki"
                     onChange={genderOptionHandler1}
                     checked={genderOption1 === "laki-laki"}
-                    className="h-8 w-8 shadow-secondary accent-secondary drop-shadow-xl"
+                    className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                   />
                   <label htmlFor="laki" className="text-primary font-bold">
                     Laki - laki
@@ -181,7 +149,7 @@ const PendaftaranMahasiswa = () => {
                     value="perempuan"
                     onChange={genderOptionHandler1}
                     checked={genderOption1 === "perempuan"}
-                    className="h-8 w-8 shadow-secondary accent-secondary drop-shadow-xl"
+                    className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                   />
                   <label htmlFor="perempuan1" className="text-primary font-bold">
                     Perempuan
@@ -200,7 +168,7 @@ const PendaftaranMahasiswa = () => {
                     value="laki-laki"
                     onChange={genderOptionHandler2}
                     checked={genderOption2 === "laki-laki"}
-                    className="h-8 w-8 shadow-secondary accent-secondary drop-shadow-xl"
+                    className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                   />
                   <label htmlFor="laki2" className="text-primary font-bold">
                     Laki - laki
@@ -213,7 +181,7 @@ const PendaftaranMahasiswa = () => {
                     value="perempuan"
                     onChange={genderOptionHandler2}
                     checked={genderOption2 === "perempuan"}
-                    className="h-8 w-8 shadow-secondary accent-secondary drop-shadow-xl"
+                    className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                   />
                   <label htmlFor="perempuan2" className="text-primary font-bold">
                     Perempuan
@@ -276,7 +244,7 @@ const PendaftaranMahasiswa = () => {
               <p className="text-primary font-bold mb-1">Foto Peserta 1</p>
               <label
                 htmlFor="foto"
-                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl"
+                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
               >
                 Unggah
               </label>
@@ -286,12 +254,27 @@ const PendaftaranMahasiswa = () => {
                 className="h-10 rounded-xl bg-white w-40 px-3 hidden"
                 onChange={fotoOnChange1}
               />
+              {fotoPreview1 && (
+                <div className="w-fit relative mt-5">
+                  <img
+                    src={fotoPreview1}
+                    alt=""
+                    className="h-full w-28 object-cover object-center rounded-lg z-20 "
+                  />
+                  <div
+                    className="absolute -top-2 -right-2 bg-red-600 rounded-full  w-5 h-5 flex items-center justify-center cursor-pointer"
+                    onClick={removeImage1}
+                  >
+                    <p className=" text-white">x</p>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="flex flex-col ">
-              <p className="text-primary font-bold mb-1">Foto Peserta 1</p>
+              <p className="text-primary font-bold mb-1">Foto Peserta 2</p>
               <label
                 htmlFor="foto2"
-                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl"
+                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl  cursor-pointer"
               >
                 Unggah
               </label>
@@ -301,6 +284,22 @@ const PendaftaranMahasiswa = () => {
                 className="h-10 rounded-xl bg-white w-40 px-3 hidden"
                 onChange={fotoOnChange2}
               />
+
+              {fotoPreview2 && (
+                <div className="w-fit relative mt-5">
+                  <img
+                    src={fotoPreview2}
+                    alt=""
+                    className="h-full w-28 object-cover object-center rounded-lg z-20 "
+                  />
+                  <div
+                    className="absolute -top-2 -right-2 bg-red-600 rounded-full  w-5 h-5 flex items-center justify-center cursor-pointer"
+                    onClick={removeImage2}
+                  >
+                    <p className=" text-white">x</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <button

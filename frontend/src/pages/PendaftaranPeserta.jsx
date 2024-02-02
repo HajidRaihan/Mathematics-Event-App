@@ -14,6 +14,7 @@ const PendaftaranPeserta = () => {
   const [username, setUsername] = useState("");
   const [foto, setFoto] = useState();
   const [listSekolah, setListSekolah] = useState();
+  const [fotoPreview, setFotoPreview] = useState();
 
   useEffect(() => {
     const getInstansi = async () => {
@@ -72,7 +73,7 @@ const PendaftaranPeserta = () => {
     console.log({ data });
 
     try {
-      const res = await RequestApi("POST", `siswa`, data, {}, "Mencoba Menyimpan Data Instansi");
+      const res = await RequestApi("POST", `siswa`, data, {}, "Mencoba Menyimpan Data Peserta");
 
       console.log("data berhasil di simpan", res);
     } catch (error) {
@@ -87,13 +88,22 @@ const PendaftaranPeserta = () => {
     // setFoto(e.target.file[0]);
     console.log(e.target.files);
     setFoto(e.target.files[0]);
+
+    if (e.target.files && e.target.files[0]) {
+      setFotoPreview(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
+  const removeImage = (e) => {
+    setFoto(null);
+    setFotoPreview(null);
   };
 
   return (
     <>
       <Navbar />
       <div className="mb-10 flex flex-col items-center">
-        <div className="flex flex-col gap-3 w-[500px]">
+        <div className="flex flex-col gap-3 max-w-[500px]">
           <InputForm label="Nama" onChange={(e) => setNama(e.target.value)} value={nama} />
           <InputForm label="NISN/NIM" onChange={(e) => setNisn(e.target.value)} value={nisn} />
           <div>
@@ -106,7 +116,7 @@ const PendaftaranPeserta = () => {
                   value="laki-laki"
                   onChange={genderOptionHandler}
                   checked={genderOption === "laki-laki"}
-                  className="h-8 w-8 shadow-secondary accent-secondary drop-shadow-xl"
+                  className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                 />
                 <label htmlFor="laki" className="text-primary font-bold">
                   Laki - laki
@@ -119,7 +129,7 @@ const PendaftaranPeserta = () => {
                   value="perempuan"
                   onChange={genderOptionHandler}
                   checked={genderOption === "perempuan"}
-                  className="h-8 w-8 shadow-secondary accent-secondary drop-shadow-xl"
+                  className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                 />
                 <label htmlFor="perempuan" className="text-primary font-bold">
                   Perempuan
@@ -127,27 +137,6 @@ const PendaftaranPeserta = () => {
               </div>
             </div>
           </div>
-          {/* <div>
-            <label htmlFor="tanggal" className="text-primary font-bold">
-              Tanggal Lahir
-            </label>
-            <input
-              type="date"
-              id="tanggal"
-              className="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3"
-            />
-          </div> */}
-
-          {/* <div>
-            <label htmlFor="nim" className="text-primary font-bold">
-              Sekolah
-            </label>
-            <select
-              type="text"
-              id="nim"
-              className="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3"
-            />
-          </div> */}
 
           <div className="flex gap-3 w-full">
             <div className="w-full">
@@ -179,16 +168,6 @@ const PendaftaranPeserta = () => {
             value={kontakWa}
           />
 
-          {/* <div>
-            <label htmlFor="sekolah" className="text-primary font-bold">
-              Nama Sekolah/Universitas
-            </label>
-            <input
-              type="text"
-              id="sekolah"
-              className="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3"
-            />
-          </div> */}
           <div className="flex gap-5">
             <InputForm label="Email" onChange={(e) => setEmail(e.target.value)} value={email} />
             <InputForm
@@ -212,12 +191,27 @@ const PendaftaranPeserta = () => {
                 className="h-10 rounded-xl bg-white w-40 px-3 hidden"
                 onChange={fotoOnChange}
               />
+              {fotoPreview && (
+                <div className="w-fit relative mt-5">
+                  <img
+                    src={fotoPreview}
+                    alt=""
+                    className="h-full w-28 object-cover object-center rounded-lg z-20 "
+                  />
+                  <div
+                    className="absolute -top-2 -right-2 bg-red-600 rounded-full  w-5 h-5 flex items-center justify-center cursor-pointer"
+                    onClick={removeImage}
+                  >
+                    <p className=" text-white">x</p>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="flex flex-col ">
               <p className="text-primary font-bold mb-1">Foto Rapor</p>
               <label
                 htmlFor="foto"
-                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl"
+                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
               >
                 Unggah
               </label>

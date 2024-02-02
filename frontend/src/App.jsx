@@ -7,6 +7,7 @@ import DaftarPeserta from "./pages/admin/DaftarPeserta";
 import PendaftaranPeserta from "./pages/PendaftaranPeserta";
 import PendaftaranInstansi from "./pages/PendaftaranInstansi";
 import PendaftaranMahasiswa from "./pages/PendaftaranMahasiswa";
+import DaftarMahasiswa from "./pages/admin/DaftarMahasiswa";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
         <Route path="/pendaftaran-mahasiswa" element={<PendaftaranMahasiswa />} />
         <Route path="/pendaftaran-instansi" element={<PendaftaranInstansi />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/peserta" element={<DaftarPeserta />} />
+        <Route path="/admin/peserta/siswa" element={<DaftarPeserta />} />
+        <Route path="/admin/peserta/mahasiswa" element={<DaftarMahasiswa />} />
       </Routes>
     </BrowserRouter>
   );
