@@ -15,7 +15,7 @@ const RequestApi = async (method, url, data = {}, headers = {}, action) => {
       url: `${API_BASE_URL}/${url}`,
       data,
       headers: {
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "application/json",
         ...headers,
       },
     });

@@ -4,10 +4,22 @@ const Navbar = () => {
       <div>
         <p>logo</p>
       </div>
-      <div className="flex gap-5 uppercase text-primary font-semibold">
+      <div className="flex gap-5 uppercase text-primary font-semibold items-center">
         <a href="">Home</a>
         <a href="">Pengumuman</a>
-        <a href="">pendaftaran</a>
+        <details className="dropdown">
+          <summary className="m-1 bg-white px-5 py-1 cursor-pointer rounded-md">
+            Pendaftaran
+          </summary>
+          <ul className="p-2 shadow menu dropdown-content z-[1]  rounded-box w-52 bg-white">
+            <li>
+              <a href="/pendaftaran-peserta">SMA</a>
+            </li>
+            <li>
+              <a>Mahasiswa</a>
+            </li>
+          </ul>
+        </details>
       </div>
     </nav>
   );

@@ -24,55 +24,29 @@ const PendaftaranPeserta = () => {
     };
     getInstansi();
   }, []);
-  const pendaftaranHandler = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("nama", nama);
-    formData.append("nisn", nisn);
-    formData.append("jenis_kelamin", genderOption);
-    formData.append("instansi_id", sekolahId);
-    formData.append("kontak", kontakWa);
-    formData.append("email", email);
-    formData.append("username", username);
-    formData.append("foto", foto);
-
-    console.log({ formData });
-
-    try {
-      const res = await RequestApi(
-        "POST",
-        `siswa`,
-        formData,
-        {},
-        "Mencoba Menyimpan Data Instansi"
-      );
-
-      console.log("data berhasil di simpan", res);
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  };
-
   // const pendaftaranHandler = async (e) => {
   //   e.preventDefault();
 
-  //   const data = {
-  //     nama: nama,
-  //     nisn: nisn,
-  //     jenis_kelamin: genderOption,
-  //     instansi_id: sekolahId,
-  //     kontak: kontakWa,
-  //     email: email,
-  //     username: username,
-  //     foto: foto,
-  //   };
+  //   const formData = new FormData();
+  //   formData.append("nama", nama);
+  //   formData.append("nisn", nisn);
+  //   formData.append("jenis_kelamin", genderOption);
+  //   formData.append("instansi_id", sekolahId);
+  //   formData.append("kontak", kontakWa);
+  //   formData.append("email", email);
+  //   formData.append("username", username);
+  //   formData.append("foto", foto);
 
-  //   console.log({ data });
+  //   console.log({ formData });
 
   //   try {
-  //     const res = await RequestApi("POST", `siswa`, data, {}, "Mencoba Menyimpan Data Instansi");
+  //     const res = await RequestApi(
+  //       "POST",
+  //       `siswa`,
+  //       formData,
+  //       {},
+  //       "Mencoba Menyimpan Data Instansi"
+  //     );
 
   //     console.log("data berhasil di simpan", res);
   //   } catch (error) {
@@ -81,12 +55,38 @@ const PendaftaranPeserta = () => {
   //   }
   // };
 
+  const pendaftaranHandler = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      nama: nama,
+      nisn: nisn,
+      jenis_kelamin: genderOption,
+      instansi_id: sekolahId,
+      kontak: kontakWa,
+      email: email,
+      username: username,
+      foto: foto,
+    };
+
+    console.log({ data });
+
+    try {
+      const res = await RequestApi("POST", `siswa`, data, {}, "Mencoba Menyimpan Data Instansi");
+
+      console.log("data berhasil di simpan", res);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
   const genderOptionHandler = (e) => setGenderOption(e.target.value);
 
   const fotoOnChange = (e) => {
     // setFoto(e.target.file[0]);
     console.log(e.target.files);
-    setFoto(e.target.files);
+    setFoto(e.target.files[0]);
   };
 
   return (

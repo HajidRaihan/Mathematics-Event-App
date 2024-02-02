@@ -7,7 +7,7 @@ const PendaftaranInstansi = () => {
   const [genderOption, setGenderOption] = useState();
   const [namaSekolah, setNamaSekolah] = useState("");
   const [alamat, setAlamat] = useState("");
-  const [tingkat, setTingkat] = useState("");
+  const [tingkat, setTingkat] = useState("mahasiswa");
   const [provinsi, setProvinsi] = useState("");
   const [kabupaten, setKabupaten] = useState("");
   const [kontakPendamping, setkontakPendamping] = useState("");
@@ -29,6 +29,8 @@ const PendaftaranInstansi = () => {
       email_pendamping: email,
     };
 
+    console.log(data);
+
     try {
       const res = await RequestApi("POST", `instansi`, data, {}, "Mencoba Menyimpan Data Instansi");
 
@@ -43,7 +45,7 @@ const PendaftaranInstansi = () => {
     <>
       <Navbar />
       <div className="mb-10 flex flex-col items-center">
-        <form className="flex flex-col gap-3 w-[500px]">
+        <div className="flex flex-col gap-3 w-[500px]">
           <InputForm
             label="Nama Sekolah"
             onChange={(e) => setNamaSekolah(e.target.value)}
@@ -70,13 +72,13 @@ const PendaftaranInstansi = () => {
               <select
                 name="jenjang"
                 id="jenjang"
-                className="h-10 rounded-lg border border-black  bg-white w-full shadow-md shadow-secondary px-3"
-                onChange={(e) => setTingkat(e.target.value)}
+                className="h-10 text-sm rounded-lg border border-black  bg-white w-full shadow-md shadow-secondary px-3"
+                onChange={(e) => {
+                  setTingkat(e.target.value);
+                  console.log(e.target.value);
+                }}
                 value={tingkat}
               >
-                <option disabled selected>
-                  Pilih Jenjang
-                </option>
                 <option value="mahasiswa">Mahasiswa</option>
                 <option value="sma">SMA</option>
               </select>
@@ -154,7 +156,7 @@ const PendaftaranInstansi = () => {
           >
             Submit
           </button>
-        </form>
+        </div>
       </div>
     </>
   );
