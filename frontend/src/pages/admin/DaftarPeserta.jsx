@@ -55,6 +55,10 @@ const DaftarPeserta = () => {
       name: "Username",
       selector: (row) => row.username,
     },
+    {
+      name: "Status",
+      selector: (row) => row.status,
+    },
   ];
 
   // const data = [

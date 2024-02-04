@@ -17,16 +17,16 @@ const Home = () => {
     <>
       <div className="background-main min-h-screen">
         <Navbar />
-        <div className="max-w-[800px]">
+        <div className="max-w-[850px]">
           <div className="mt-10 flex flex-col mx-32 gap-3">
             <p className="text-xl text-white">Halo, Welcom To</p>
-            <h1 className="text-5xl text-white font-bold">MATHEMATICS EVENT</h1>
-            <h1 className="text-5xl text-primary font-bold">XXIV</h1>
-            <p className="text-white text-lg font-semibold tracking-widest">
+            <h1 className="text-5xl text-white font-bold tracking-widest">MATHEMATICS EVENT</h1>
+            <h1 className="text-5xl text-primary font-bold tracking-widest">XXIV</h1>
+            <p className="text-white text-base font-semibold tracking-widest">
               “ Mathematics Beyond Limits: Membuka Petualangan Matematika, Temukan Keajaiban dalam
               Angka ”
             </p>
-            <p className="text-sm text-white">
+            <p className="text-xs text-white">
               Mathematics Event adalah kompetisi matematika tahunan yang diadakan oleh Himpunan
               Mahasiswa Matematika Fakultas Matematika dan Ilmu Pengetahuan Alam Universitas
               Hasanuddin (Himatika FMIPA Unhas) sebagai wadah untuk mengembangkan kualitas sumber

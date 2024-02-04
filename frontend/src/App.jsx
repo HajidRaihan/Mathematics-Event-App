@@ -15,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/pendaftaran-peserta" element={<PendaftaranPeserta />} />
-        <Route path="/pendaftaran-mahasiswa" element={<PendaftaranMahasiswa />} />
-        <Route path="/pendaftaran-instansi" element={<PendaftaranInstansi />} />
+        <Route path="/pendaftaran/siswa" element={<PendaftaranPeserta />} />
+        <Route path="/pendaftaran/mahasiswa" element={<PendaftaranMahasiswa />} />
+        <Route path="/pendaftaran/instansi" element={<PendaftaranInstansi />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/peserta/siswa" element={<DaftarPeserta />} />
         <Route path="/admin/peserta/mahasiswa" element={<DaftarMahasiswa />} />

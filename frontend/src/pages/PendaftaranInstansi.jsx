@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DaftarModal from "../components/DaftarModal";
 import InputForm from "../components/InputForm";
 import Navbar from "../components/Navbar";
 import { RequestApi } from "../helper/RequestApi";
@@ -14,8 +15,12 @@ const PendaftaranInstansi = () => {
   const [kontakWa, setKontakWa] = useState("");
   const [email, setEmail] = useState("");
 
-  const genderOptionHandler = (e) => setGenderOption(e.target.value);
-
+  const openHandler = () => {
+    document.getElementById("daftarmodal").showModal();
+  };
+  const closeHandler = () => {
+    document.getElementById("daftarmodal").close();
+  };
   const pendaftaranHandler = async (e) => {
     e.preventDefault();
 
@@ -33,6 +38,10 @@ const PendaftaranInstansi = () => {
 
     try {
       const res = await RequestApi("POST", `instansi`, data, {}, "Mencoba Menyimpan Data Instansi");
+
+      if (res.status === true) {
+        openHandler();
+      }
 
       console.log("data berhasil di simpan", res);
     } catch (error) {
@@ -157,6 +166,8 @@ const PendaftaranInstansi = () => {
             Submit
           </button>
         </div>
+
+        <DaftarModal id={"daftarmodal"} close={closeHandler} />
       </div>
     </>
   );

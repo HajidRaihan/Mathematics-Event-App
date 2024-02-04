@@ -215,10 +215,10 @@ const DaftarMahasiswa = () => {
   ];
 
   return (
-    <div className="flex">
+    <div className="flex w-full max-h-screen overflow-x-visible">
       <AdminNav />
-      <div className="w-full">
-        <DataTable columns={columns} data={dataPeserta} fixedHeader />
+      <div className="w-full max-h-screen">
+        <DataTable columns={columns} data={dataPeserta} fixedHeader title="Data Mahasiswa" />
       </div>
     </div>
   );
