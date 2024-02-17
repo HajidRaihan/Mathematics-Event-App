@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import ButtonSubmit from "../components/ButtonSubmit";
+import DaftarModal from "../components/DaftarModal";
 import InputForm from "../components/InputForm";
 import Navbar from "../components/Navbar";
 import { RequestApi } from "../helper/RequestApi";
@@ -21,6 +23,10 @@ const PendaftaranMahasiswa = () => {
   const [listInstansi, setListInstansi] = useState();
   const [fotoPreview1, setFotoPreview1] = useState();
   const [fotoPreview2, setFotoPreview2] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertDesc, setAlertDesc] = useState("Gagal memasukkan data");
 
   const genderOptionHandler1 = (e) => setGenderOption1(e.target.value);
   const genderOptionHandler2 = (e) => setGenderOption2(e.target.value);
@@ -35,10 +41,25 @@ const PendaftaranMahasiswa = () => {
     getInstansi();
   }, []);
 
+  const openHandler = () => {
+    setShowModal(true);
+  };
+  const closeHandler = () => {
+    setShowModal(false);
+  };
+
+  const showAlertHandler = (message) => {
+    setShowAlert(true);
+    setAlertDesc(message);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+  };
+
   const pendaftaranHandler = async (e) => {
     e.preventDefault();
 
-    console.log("clicked");
+    setIsLoading(true);
 
     const data = {
       anggota_1: nama1,
@@ -62,10 +83,21 @@ const PendaftaranMahasiswa = () => {
     try {
       const res = await RequestApi("POST", `mahasiswa`, data, {}, "Mencoba Menyimpan Data Peserta");
 
+      if (res.status === true) {
+        openHandler();
+        setIsLoading(false);
+      }
+      if (res.status === false) {
+        showAlertHandler(res.message);
+      }
+      setIsLoading(false);
+
       console.log("data berhasil di simpan", res);
     } catch (error) {
       console.log(error);
-      throw error;
+      setIsLoading(false);
+      showAlertHandler(error.response.request.response);
+      // throw error;
     }
   };
 
@@ -100,8 +132,8 @@ const PendaftaranMahasiswa = () => {
     <>
       <Navbar />
       <div className="mb-10 flex flex-col items-center">
-        <div className="flex flex-col gap-3 w-[500px]">
-          <div className="flex gap-5">
+        <div className="flex flex-col gap-3 md:w-[500px]">
+          <div className="flex md:flex-row flex-col gap-5">
             <InputForm
               label="Nama Peserta 1"
               onChange={(e) => setNama1(e.target.value)}
@@ -113,7 +145,7 @@ const PendaftaranMahasiswa = () => {
               value={nama2}
             />
           </div>
-          <div className="flex gap-5">
+          <div className="flex md:flex-row flex-col gap-5">
             <InputForm
               label="NIM Peserta 1"
               onChange={(e) => setNim1(e.target.value)}
@@ -125,9 +157,9 @@ const PendaftaranMahasiswa = () => {
               value={nim2}
             />
           </div>
-          <div className="flex ">
+          <div className="flex">
             <div className="w-full">
-              <p className="text-primary font-bold mb-3">Gender 1</p>
+              <p className="text-primary font-bold mb-3 text-xs">Gender 1</p>
               <div className="flex flex-col gap-5">
                 <div className="flex items-center gap-3">
                   <input
@@ -138,7 +170,7 @@ const PendaftaranMahasiswa = () => {
                     checked={genderOption1 === "laki-laki"}
                     className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                   />
-                  <label htmlFor="laki" className="text-primary font-bold">
+                  <label htmlFor="laki" className="text-xs text-primary font-bold">
                     Laki - laki
                   </label>
                 </div>
@@ -151,15 +183,14 @@ const PendaftaranMahasiswa = () => {
                     checked={genderOption1 === "perempuan"}
                     className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                   />
-                  <label htmlFor="perempuan1" className="text-primary font-bold">
+                  <label htmlFor="perempuan1" className="text-xs text-primary font-bold">
                     Perempuan
                   </label>
                 </div>
               </div>
             </div>
             <div className="w-full">
-              <p className="text-primary font-bold mb-3">Gender</p>
-
+              <p className="text-primary font-bold mb-3 text-xs">Gender 2</p>
               <div className="flex flex-col gap-5">
                 <div className="flex items-center gap-3">
                   <input
@@ -170,7 +201,7 @@ const PendaftaranMahasiswa = () => {
                     checked={genderOption2 === "laki-laki"}
                     className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                   />
-                  <label htmlFor="laki2" className="text-primary font-bold">
+                  <label htmlFor="laki2" className="text-xs text-primary font-bold">
                     Laki - laki
                   </label>
                 </div>
@@ -183,7 +214,7 @@ const PendaftaranMahasiswa = () => {
                     checked={genderOption2 === "perempuan"}
                     className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                   />
-                  <label htmlFor="perempuan2" className="text-primary font-bold">
+                  <label htmlFor="perempuan2" className="text-xs text-primary font-bold">
                     Perempuan
                   </label>
                 </div>
@@ -193,13 +224,13 @@ const PendaftaranMahasiswa = () => {
 
           <div className="flex gap-3 w-full">
             <div className="w-full">
-              <label htmlFor="instansi" className="text-primary font-bold">
+              <label htmlFor="instansi" className="text-primary text-xs font-bold">
                 Instansi
               </label>
               <select
                 name="instansi"
                 id="instansi"
-                className="h-10 rounded-lg border border-black  bg-white w-full shadow-md shadow-secondary px-3"
+                className="h-10 text-xs rounded-lg border border-black  bg-white w-full shadow-md shadow-secondary px-3"
                 onChange={(e) => setInstansi(e.target.value)}
                 value={instansi}
               >
@@ -215,12 +246,12 @@ const PendaftaranMahasiswa = () => {
             </div>
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex md:flex-row flex-col gap-5">
             <InputForm label="Email 1" onChange={(e) => setEmail1(e.target.value)} value={email1} />
             <InputForm label="Email 2" onChange={(e) => setEmail2(e.target.value)} value={email2} />
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex md:flex-row flex-col gap-5">
             <InputForm
               label="Kontak WA 1"
               onChange={(e) => setKontak1(e.target.value)}
@@ -239,12 +270,12 @@ const PendaftaranMahasiswa = () => {
             value={username}
           />
 
-          <div className="flex gap-20">
+          <div className="flex md:gap-20 gap-5 md:flex-row flex-col mt-3">
             <div className="flex flex-col ">
-              <p className="text-primary font-bold mb-1">Foto Peserta 1</p>
+              <p className="text-primary font-bold mb-1 text-xs">Foto Peserta 1</p>
               <label
                 htmlFor="foto"
-                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
+                className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
               >
                 Unggah
               </label>
@@ -270,11 +301,11 @@ const PendaftaranMahasiswa = () => {
                 </div>
               )}
             </div>
-            <div className="flex flex-col ">
-              <p className="text-primary font-bold mb-1">Foto Peserta 2</p>
+            <div className="flex flex-col">
+              <p className="text-primary font-bold mb-1 text-xs">Foto Peserta 2</p>
               <label
                 htmlFor="foto2"
-                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl  cursor-pointer"
+                className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
               >
                 Unggah
               </label>
@@ -302,13 +333,15 @@ const PendaftaranMahasiswa = () => {
               )}
             </div>
           </div>
-          <button
-            className="rounded-xl border-2 border-primary h-10 w-40 font-semibold text-primary"
-            onClick={pendaftaranHandler}
-          >
-            Submit
-          </button>
+          <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
+          {showAlert && <Alert title={alertDesc} />}
         </div>
+        {showModal && (
+          <DaftarModal
+            title="Pendaftaran Mahasiswa berhasil dilakukan"
+            closeHandler={closeHandler}
+          />
+        )}
       </div>
     </>
   );

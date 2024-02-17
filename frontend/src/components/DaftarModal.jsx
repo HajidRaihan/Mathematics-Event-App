@@ -1,40 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const DaftarModal = ({ id }) => {
+const DaftarModal = ({ id, closeHandler, title }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    document.getElementById("daftarmodal").showModal();
+  }, []);
+
   return (
-    <dialog id={id} className="modal py-10">
-      {/* <div className="modal-box bg-white flex flex-col items-center">
-        <h3 className="font-bold text-lg">Hello!</h3>
-        <p className="py-4">Pendaftaran berhasil.</p>
-
-        <div className="modal-action">
-          <form method="dialog ">
-            <div className="flex gap-3 flex-wrap justify-center">
-            <button
-              className="px-3 py-2 rounded-lg bg-primary text-white hover:opacity-60"
-              onClick={() => close()}
-            >
-              Daftar Instansi Lain
-            </button>
-            <button className="px-3 py-2 rounded-lg bg-primary text-white hover:opacity-60">
-              Daftar Siswa
-            </button>
-            <button className="px-3 py-2 rounded-lg bg-primary text-white hover:opacity-60">
-              Daftar Mahasiswa
-            </button>
-            </div>
-          </form>
-        </div>
-      </div> */}
-
+    <dialog id={"daftarmodal"} className="modal py-10">
       <div className="modal-box bg-white flex flex-col items-center">
-        <h3 className="font-bold text-lg">Hello!</h3>
-        <p className="py-4">Pendafaran Instansi Behasil dilakukan</p>
-        <div className="modal-action">
-          <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
-            <button className="btn">Close</button>
-          </form>
+        <p className="py-4 font-bold">{title}</p>
+        <div className="modal-action flex flex-wrap justify-center gap-2">
+          {/* if there is a button in form, it will close the modal */}
+          <button className="btn text-xs" onClick={closeHandler}>
+            Daftar Instansi Lain
+          </button>
+          <button className="btn text-xs" onClick={() => navigate("/pendaftaran/siswa")}>
+            Daftar Peserta SMA
+          </button>
+          <button className="btn text-xs" onClick={() => navigate("/pendaftaran/mahasiswa")}>
+            Daftar Peserta Mahasiswa
+          </button>
         </div>
       </div>
     </dialog>

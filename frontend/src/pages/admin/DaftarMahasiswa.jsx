@@ -6,15 +6,20 @@ import { RequestApi } from "../../helper/RequestApi";
 const DaftarMahasiswa = () => {
   const [dataPeserta, setDataPeserta] = useState();
   useEffect(() => {
-    const getInstansi = async () => {
+    const getMahasiswa = async () => {
       const res = await RequestApi("GET", `mahasiswa`, {}, {}, "Mencoba Mengambil Data Instansi");
 
       setDataPeserta(res.data);
       console.log(res.data);
     };
-    getInstansi();
+    getMahasiswa();
   }, []);
   const columns = [
+    {
+      name: "id",
+      selector: (row) => row.id,
+      cell: (row) => <p>{row.id}</p>,
+    },
     {
       name: "Foto",
       selector: (row) => (
@@ -217,8 +222,14 @@ const DaftarMahasiswa = () => {
   return (
     <div className="flex w-full max-h-screen overflow-x-visible">
       <AdminNav />
-      <div className="w-full max-h-screen">
-        <DataTable columns={columns} data={dataPeserta} fixedHeader title="Data Mahasiswa" />
+      <div className="w-full">
+        <DataTable
+          columns={columns}
+          data={dataPeserta}
+          title={`Peserta Mahasiswa | ${dataPeserta?.length}`}
+          pagination
+          scrollX
+        />
       </div>
     </div>
   );

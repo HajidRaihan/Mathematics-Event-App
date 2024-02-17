@@ -6,15 +6,21 @@ import { RequestApi } from "../../helper/RequestApi";
 const DaftarPeserta = () => {
   const [dataPeserta, setDataPeserta] = useState();
   useEffect(() => {
-    const getInstansi = async () => {
+    const getSiswa = async () => {
       const res = await RequestApi("GET", `siswa`, {}, {}, "Mencoba Mengambil Data Instansi");
 
       setDataPeserta(res.data);
       console.log(res.data);
     };
-    getInstansi();
+    getSiswa();
   }, []);
   const columns = [
+    {
+      name: "id",
+      selector: (row) => row.id,
+      cell: (row) => <p>{row.id}</p>,
+      sortable: true,
+    },
     {
       name: "Foto",
       selector: (row) => (
@@ -28,22 +34,27 @@ const DaftarPeserta = () => {
     {
       name: "Nama",
       selector: (row) => row.nama,
+      cell: (row) => <p>{row.nama}</p>,
     },
     {
       name: "NISN",
       selector: (row) => row.nisn,
+      cell: (row) => <p>{row.nisn}</p>,
     },
     {
       name: "Gender",
       selector: (row) => row.jenis_kelamin,
+      cell: (row) => <p>{row.jenis_kelamin}</p>,
     },
     {
       name: "Sekolah",
       selector: (row) => row.instansi_id,
+      cell: (row) => <p>{row.instansi_id}</p>,
     },
     {
       name: "Kontak WA",
       selector: (row) => row.kontak,
+      cell: (row) => <p>{row.kontak}</p>,
     },
     {
       name: "Email",
@@ -54,10 +65,12 @@ const DaftarPeserta = () => {
     {
       name: "Username",
       selector: (row) => row.username,
+      cell: (row) => <p>{row.username}</p>,
     },
     {
       name: "Status",
       selector: (row) => row.status,
+      cell: (row) => <p>{row.status}</p>,
     },
   ];
 
@@ -211,7 +224,7 @@ const DaftarPeserta = () => {
       <AdminNav />
       <div className="w-full max-h-screen">
         <DataTable
-          title="Peserta SMA"
+          title={`Peserta SMA | ${dataPeserta?.length}`}
           columns={columns}
           data={dataPeserta}
           // fixedHeader

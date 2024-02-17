@@ -3,12 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <nav className="flex justify-between mx-32 h-20 items-center">
+    <nav className="flex justify-between md:mx-32 mx-5 h-20 items-center">
       <div>
         <p>logo</p>
       </div>
       <div className="flex gap-5 uppercase text-primary font-semibold items-center text-sm">
-        <a href="">Home</a>
         <a href="">Pengumuman</a>
         <details className="dropdown">
           <summary className="m-1 bg-white px-5 py-1 cursor-pointer rounded-md">
