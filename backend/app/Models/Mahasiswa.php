@@ -24,6 +24,7 @@ class Mahasiswa extends Model
         'foto_1',
         'foto_2',
         'username',
+        'status',
     ];
     public function instansi(): BelongsTo
     {

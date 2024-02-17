@@ -19,6 +19,7 @@ class Siswa extends Model
         'email',
         'foto',
         'username',
+        'status',
      ];
 
     public function instansi(): BelongsTo

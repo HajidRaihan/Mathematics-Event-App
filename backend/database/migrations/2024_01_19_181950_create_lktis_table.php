@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('foto_2',2048);
             $table->string('foto_3',2048)->nullable();
             $table->string('username');
-            $table->string('status')->nullable();
+            $table->string('status')->default('belum lunas');
             $table->timestamps();
 
             $table->foreign('instansi_id')->references('id')->on('instansis');

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('foto',2048);
             $table->string('username');
-            $table->string('status')->nullable();
+            $table->string('status')->default('belum lunas');
             $table->timestamps();
 
             $table->foreign('instansi_id')->references('id')->on('instansis');

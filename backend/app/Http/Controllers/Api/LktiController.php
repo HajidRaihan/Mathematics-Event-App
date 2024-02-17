@@ -130,7 +130,35 @@ class LktiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Lkti::find($id);
+        if(empty($data)){
+            return response()->json([
+                'status'=>false,
+                'message'=>'Data Tidak Ditemukan'
+            ],404);
+        }
+
+        $rules =[
+            'status'=>'required',
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if($validator->fails()){
+            return response()->json([
+                'status'=>false,
+                'message'=>'Gagal Mengupdate Data',
+                'data'=>$validator->errors()
+            ]);
+        }
+
+        $data->update([
+            'status'=>$request->input('status'),
+        ]);
+        return response()->json([
+            'status'=>true,
+            'message'=>'Sukses Mengupdate Data'
+        ]);
     }
 
     /**
