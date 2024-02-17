@@ -210,7 +210,7 @@ const PendaftaranPeserta = () => {
                 </div>
               )}
             </div>
-            <div className="flex flex-col ">
+            {/* <div className="flex flex-col ">
               <p className="text-primary font-bold mb-1 text-xs">Foto Rapor</p>
               <label
                 htmlFor="foto"
@@ -223,7 +223,7 @@ const PendaftaranPeserta = () => {
                 id="foto"
                 className="h-10 rounded-xl bg-white w-40   px-3 hidden"
               />
-            </div>
+            </div> */}
           </div>
           <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
           {showAlert && <Alert title={alertDesc} />}

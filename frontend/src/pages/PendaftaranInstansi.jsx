@@ -3,10 +3,10 @@ import ButtonSubmit from "../components/ButtonSubmit";
 import DaftarModal from "../components/DaftarModal";
 import InputForm from "../components/InputForm";
 import Navbar from "../components/Navbar";
+import Alert from "../components/Alert";
 import { RequestApi } from "../helper/RequestApi";
 
 const PendaftaranInstansi = () => {
-  const [genderOption, setGenderOption] = useState();
   const [namaSekolah, setNamaSekolah] = useState("");
   const [alamat, setAlamat] = useState("");
   const [tingkat, setTingkat] = useState("mahasiswa");
@@ -83,17 +83,6 @@ const PendaftaranInstansi = () => {
           />
           <InputForm label="Alamat" onChange={(e) => setAlamat(e.target.value)} value={alamat} />
 
-          {/* <div>
-            <label htmlFor="tanggal" className="text-primary font-bold">
-              Tanggal Lahir
-            </label>
-            <input
-              type="date"
-              id="tanggal"
-              className="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3"
-            />
-          </div> */}
-
           <div className="md:flex gap-3 w-full">
             <div className="w-1/2 mb-3 md:mb-0">
               <label htmlFor="jenjang" className="text-primary text-xs font-bold">
@@ -113,21 +102,6 @@ const PendaftaranInstansi = () => {
                 <option value="sma">SMA</option>
               </select>
             </div>
-            {/* <div className="w-full">
-              <div>
-                <label htmlFor="jenjang" className="text-primary font-bold">
-                  Provinsi
-                </label>
-                <select
-                  name="jenjang"
-                  id="jenjang"
-                  className="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary px-3"
-                >
-                  <option value="mahasiswa">Mahasiswa</option>
-                  <option value="sma">SMA</option>
-                </select>
-              </div>
-            </div> */}
             <InputForm
               label="Provinsi"
               onChange={(e) => setProvinsi(e.target.value)}
@@ -139,29 +113,6 @@ const PendaftaranInstansi = () => {
             onChange={(e) => setKabupaten(e.target.value)}
             value={kabupaten}
           />
-          {/* <div className="w-1/2">
-            <label htmlFor="jenjang" className="text-primary font-bold">
-              Kabupaten
-            </label>
-            <select
-              name="jenjang"
-              id="jenjang"
-              className="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary px-3"
-            >
-              <option value="mahasiswa">Mahasiswa</option>
-              <option value="sma">SMA</option>
-            </select>
-          </div> */}
-          {/* <div>
-            <label htmlFor="sekolah" className="text-primary font-bold">
-              Nama Sekolah/Universitas
-            </label>
-            <input
-              type="text"
-              id="sekolah"
-              className="h-10 rounded-xl bg-white w-full shadow-md shadow-secondary p-3"
-            />
-          </div> */}
           <div className="flex md:flex-row  md:gap-5 gap-3 flex-col">
             <InputForm
               label="Kontak Pendamping"

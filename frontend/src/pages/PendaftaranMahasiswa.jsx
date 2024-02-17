@@ -3,6 +3,7 @@ import ButtonSubmit from "../components/ButtonSubmit";
 import DaftarModal from "../components/DaftarModal";
 import InputForm from "../components/InputForm";
 import Navbar from "../components/Navbar";
+import Alert from "../components/Alert";
 import { RequestApi } from "../helper/RequestApi";
 
 const PendaftaranMahasiswa = () => {
