@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import Alert from "../components/Alert";
+import ButtonSubmit from "../components/ButtonSubmit";
+import DaftarModal from "../components/DaftarModal";
 import InputForm from "../components/InputForm";
 import Navbar from "../components/Navbar";
 import { RequestApi } from "../helper/RequestApi";
@@ -15,6 +18,10 @@ const PendaftaranPeserta = () => {
   const [foto, setFoto] = useState();
   const [listSekolah, setListSekolah] = useState();
   const [fotoPreview, setFotoPreview] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertDesc, setAlertDesc] = useState("Gagal memasukkan data");
 
   useEffect(() => {
     const getInstansi = async () => {
@@ -25,39 +32,25 @@ const PendaftaranPeserta = () => {
     };
     getInstansi();
   }, []);
-  // const pendaftaranHandler = async (e) => {
-  //   e.preventDefault();
 
-  //   const formData = new FormData();
-  //   formData.append("nama", nama);
-  //   formData.append("nisn", nisn);
-  //   formData.append("jenis_kelamin", genderOption);
-  //   formData.append("instansi_id", sekolahId);
-  //   formData.append("kontak", kontakWa);
-  //   formData.append("email", email);
-  //   formData.append("username", username);
-  //   formData.append("foto", foto);
+  const openHandler = () => {
+    setShowModal(true);
+  };
+  const closeHandler = () => {
+    setShowModal(false);
+  };
 
-  //   console.log({ formData });
-
-  //   try {
-  //     const res = await RequestApi(
-  //       "POST",
-  //       `siswa`,
-  //       formData,
-  //       {},
-  //       "Mencoba Menyimpan Data Instansi"
-  //     );
-
-  //     console.log("data berhasil di simpan", res);
-  //   } catch (error) {
-  //     console.log(error);
-  //     throw error;
-  //   }
-  // };
+  const showAlertHandler = (message) => {
+    setShowAlert(true);
+    setAlertDesc(message);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+  };
 
   const pendaftaranHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const data = {
       nama: nama,
@@ -74,11 +67,21 @@ const PendaftaranPeserta = () => {
 
     try {
       const res = await RequestApi("POST", `siswa`, data, {}, "Mencoba Menyimpan Data Peserta");
+      if (res.status === true) {
+        openHandler();
+        setIsLoading(false);
+      }
+      if (res.status === false) {
+        showAlertHandler(res.message);
+      }
+      setIsLoading(false);
 
       console.log("data berhasil di simpan", res);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
-      throw error;
+      showAlertHandler(error.response.request.response);
+      // throw error;
     }
   };
 
@@ -103,11 +106,11 @@ const PendaftaranPeserta = () => {
     <>
       <Navbar />
       <div className="mb-10 flex flex-col items-center">
-        <div className="flex flex-col gap-3 max-w-[500px]">
+        <div className="flex flex-col gap-5 max-w-[500px]">
           <InputForm label="Nama" onChange={(e) => setNama(e.target.value)} value={nama} />
           <InputForm label="NISN/NIM" onChange={(e) => setNisn(e.target.value)} value={nisn} />
           <div>
-            <p className="text-primary font-bold mb-3">Gender</p>
+            <p className="text-primary font-bold mb-3 text-xs">Gender</p>
             <div className="flex gap-10">
               <div className="flex items-center gap-3">
                 <input
@@ -118,7 +121,7 @@ const PendaftaranPeserta = () => {
                   checked={genderOption === "laki-laki"}
                   className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                 />
-                <label htmlFor="laki" className="text-primary font-bold">
+                <label htmlFor="laki" className="text-primary font-bold text-xs">
                   Laki - laki
                 </label>
               </div>
@@ -131,7 +134,7 @@ const PendaftaranPeserta = () => {
                   checked={genderOption === "perempuan"}
                   className="h-5 w-5 shadow-secondary accent-secondary drop-shadow-xl"
                 />
-                <label htmlFor="perempuan" className="text-primary font-bold">
+                <label htmlFor="perempuan" className="text-primary font-bold text-xs">
                   Perempuan
                 </label>
               </div>
@@ -140,13 +143,13 @@ const PendaftaranPeserta = () => {
 
           <div className="flex gap-3 w-full">
             <div className="w-full">
-              <label htmlFor="jenjang" className="text-primary font-bold">
+              <label htmlFor="jenjang" className="text-primary font-bold text-xs">
                 Sekolah
               </label>
               <select
                 name="jenjang"
                 id="jenjang"
-                className="h-10 rounded-lg border border-black  bg-white w-full shadow-md shadow-secondary px-3"
+                className="text-xs h-10 rounded-lg border border-black  bg-white w-full shadow-md shadow-secondary px-3"
                 onChange={(e) => setSekolahId(e.target.value)}
                 value={sekolahId}
               >
@@ -168,7 +171,7 @@ const PendaftaranPeserta = () => {
             value={kontakWa}
           />
 
-          <div className="flex gap-5">
+          <div className="flex gap-5 md:flex-row flex-col">
             <InputForm label="Email" onChange={(e) => setEmail(e.target.value)} value={email} />
             <InputForm
               label="username"
@@ -176,12 +179,12 @@ const PendaftaranPeserta = () => {
               value={username}
             />
           </div>
-          <div className="flex gap-20">
+          <div className="flex md:gap-20 gap-5 md:flex-row flex-col">
             <div className="flex flex-col ">
-              <p className="text-primary font-bold mb-1">Unggah Foto</p>
+              <p className="text-primary font-bold mb-1 text-xs">Unggah Foto</p>
               <label
                 htmlFor="foto"
-                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl"
+                className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl"
               >
                 Unggah
               </label>
@@ -207,11 +210,11 @@ const PendaftaranPeserta = () => {
                 </div>
               )}
             </div>
-            <div className="flex flex-col ">
-              <p className="text-primary font-bold mb-1">Foto Rapor</p>
+            {/* <div className="flex flex-col ">
+              <p className="text-primary font-bold mb-1 text-xs">Foto Rapor</p>
               <label
                 htmlFor="foto"
-                className="font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
+                className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
               >
                 Unggah
               </label>
@@ -220,15 +223,14 @@ const PendaftaranPeserta = () => {
                 id="foto"
                 className="h-10 rounded-xl bg-white w-40   px-3 hidden"
               />
-            </div>
+            </div> */}
           </div>
-          <button
-            className="rounded-xl border-2 border-primary h-10 w-40 font-semibold text-primary"
-            onClick={pendaftaranHandler}
-          >
-            Submit
-          </button>
+          <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
+          {showAlert && <Alert title={alertDesc} />}
         </div>
+        {showModal && (
+          <DaftarModal title="Pendaftaran Siswa berhasil dilakukan" closeHandler={closeHandler} />
+        )}
       </div>
     </>
   );

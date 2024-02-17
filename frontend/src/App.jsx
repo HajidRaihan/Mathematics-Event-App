@@ -8,6 +8,7 @@ import PendaftaranPeserta from "./pages/PendaftaranPeserta";
 import PendaftaranInstansi from "./pages/PendaftaranInstansi";
 import PendaftaranMahasiswa from "./pages/PendaftaranMahasiswa";
 import DaftarMahasiswa from "./pages/admin/DaftarMahasiswa";
+import DaftarInstansi from "./pages/admin/DaftarInstansi";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/peserta/siswa" element={<DaftarPeserta />} />
         <Route path="/admin/peserta/mahasiswa" element={<DaftarMahasiswa />} />
+        <Route path="/admin/instansi" element={<DaftarInstansi />} />
       </Routes>
     </BrowserRouter>
   );

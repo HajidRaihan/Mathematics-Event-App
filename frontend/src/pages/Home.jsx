@@ -17,12 +17,14 @@ const Home = () => {
     <>
       <div className="background-main min-h-screen">
         <Navbar />
-        <div className="max-w-[850px]">
-          <div className="mt-10 flex flex-col mx-32 gap-3">
-            <p className="text-xl text-white">Halo, Welcom To</p>
-            <h1 className="text-5xl text-white font-bold tracking-widest">MATHEMATICS EVENT</h1>
-            <h1 className="text-5xl text-primary font-bold tracking-widest">XXIV</h1>
-            <p className="text-white text-base font-semibold tracking-widest">
+        <div className="md:max-w-[850px]">
+          <div className="mt-10 flex flex-col md:mx-32 mx-5 gap-3">
+            <p className="md:text-xl text-lg text-white">Halo, Welcom To</p>
+            <h1 className="md:text-5xl text-4xl text-white font-bold tracking-widest">
+              MATHEMATICS EVENT
+            </h1>
+            <h1 className="md:text-5xl text-4xl text-primary font-bold tracking-widest">XXIV</h1>
+            <p className="text-white md:text-base text-xs md:font-semibold font-medium md:tracking-widest tracking-wider">
               “ Mathematics Beyond Limits: Membuka Petualangan Matematika, Temukan Keajaiban dalam
               Angka ”
             </p>
@@ -44,7 +46,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mx-32 my-32 text-sm text-primary flex flex-col gap-3">
+      <div className="md:mx-32 mx-5 my-32 text-sm text-primary flex flex-col gap-3">
         <h3 className="font-bold">PESERTA MATHEMATICS EVENT XXIV</h3>
         <div>
           <p className="font-medium">Tingkat</p>
@@ -87,7 +89,7 @@ const Home = () => {
       </div>
 
       <div className="bg-primary min-h-screen">
-        <div className="mx-32 max-w-[600px] py-32 text-sm text-white flex flex-col gap-3">
+        <div className="md:mx-32 mx-5  max-w-[600px] py-32 text-sm text-white flex flex-col gap-3">
           <h3 className="font-bold">GAMBARAN LOMBA</h3>
           <div>
             <h3 className="font-bold">SMA</h3>
