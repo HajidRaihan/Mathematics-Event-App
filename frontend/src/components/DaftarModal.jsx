@@ -11,6 +11,7 @@ const DaftarModal = ({ id, closeHandler, title }) => {
     <dialog id={"daftarmodal"} className="modal py-10">
       <div className="modal-box bg-white flex flex-col items-center">
         <p className="py-4 font-bold">{title}</p>
+        <p>askdjah</p>
         <div className="modal-action flex flex-wrap justify-center gap-2">
           {/* if there is a button in form, it will close the modal */}
           <button className="btn text-xs" onClick={closeHandler}>
