@@ -27,6 +27,14 @@ const AdminNav = () => {
         <p className="text-primary text-xs font-semibold">Daftar Peserta Mahasiswa</p>
       </div>
       <div
+        className="flex items-center gap-2 cursor-pointer
+"
+        onClick={() => navigate("/admin/peserta/lktmn")}
+      >
+        <img src={PesertaIcon} alt="dashboardicon" className="h-5 w-5 " />
+        <p className="text-primary text-xs font-semibold">Daftar Peserta LKTMN</p>
+      </div>
+      <div
         className="flex items-center gap-2 cursor-pointer"
         onClick={() => navigate("/admin/instansi")}
       >

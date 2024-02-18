@@ -115,11 +115,19 @@ const PendaftaranPeserta = () => {
     setFotoPreview(null);
   };
 
+  useEffect(() => {
+    if (listSekolah && listSekolah.length > 0) {
+      setSekolahId(listSekolah[0].id);
+    }
+  }, [listSekolah]);
+
   return (
     <>
       <Navbar />
       <div className="mb-10 flex flex-col items-center">
         <div className="flex flex-col gap-5 max-w-[500px] mb-32">
+          <h1 className="text-3xl font-bold text-primary">Pendaftaran Siswa</h1>
+          <div className="w-full h-0.5 bg-primary mb-5" />
           <InputForm label="Nama" onChange={(e) => setNama(e.target.value)} value={nama} />
           <InputForm label="NISN/NIM" onChange={(e) => setNisn(e.target.value)} value={nisn} />
           <div>
@@ -169,9 +177,13 @@ const PendaftaranPeserta = () => {
                   Pilih Sekolah
                 </option>
                 {listSekolah?.map((data) => (
-                  <option key={data.id} value={data.id}>
-                    {data.instansi}
-                  </option>
+                  <>
+                    {data.jenjang !== "mahasiswa" ? (
+                      <option key={data.id} value={data.id}>
+                        {data.instansi}
+                      </option>
+                    ) : null}
+                  </>
                 ))}
               </select>
             </div>
@@ -184,7 +196,12 @@ const PendaftaranPeserta = () => {
           <InputForm label="Email" onChange={(e) => setEmail(e.target.value)} value={email} />
           <div className="flex md:gap-20 gap-5 md:flex-row flex-col">
             <div className="flex flex-col ">
-              <p className="text-primary font-bold mb-1 text-xs">Unggah Foto</p>
+              <p className="text-primary font-bold mb-1 text-xs">
+                Unggah Foto{" "}
+                <span className="text-red-600 text-[10px] font-normal">
+                  (jpg, png, jpeg) max 500kb
+                </span>
+              </p>
               <label
                 htmlFor="foto"
                 className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl"
@@ -214,7 +231,12 @@ const PendaftaranPeserta = () => {
               )}
             </div>
             <div className="flex flex-col ">
-              <p className="text-primary font-bold mb-1 text-xs">Foto Rapor</p>
+              <p className="text-primary font-bold mb-1 text-xs">
+                Foto Rapor{" "}
+                <span className="text-red-600 text-[10px] font-normal">
+                  (jpg, png, jpeg) max 500kb
+                </span>
+              </p>
               <label
                 htmlFor="rapor"
                 className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
