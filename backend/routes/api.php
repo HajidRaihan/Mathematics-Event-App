@@ -27,4 +27,4 @@ Route::apiResource('instansi',InstansiController::class);
 Route::apiResource('siswa',SiswaController::class);
 Route::apiResource('mahasiswa',MahasiswaController::class);
 Route::apiResource('lkti',LktiController::class);
-Route::get('gambar/{gambar}',[ImageController::class,'show']);
+Route::get('uploads/{gambar}',[ImageController::class,'show']);

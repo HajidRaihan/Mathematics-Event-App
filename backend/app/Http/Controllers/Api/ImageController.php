@@ -29,12 +29,20 @@ class ImageController extends Controller
      */
     public function show($gambar)
     {
+    $extension = pathinfo($gambar, PATHINFO_EXTENSION);
+    $mimeTypes = [
+        'jpg' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'png' => 'image/png',
+    ];
         if (!Storage::disk('public')->exists('uploads/' . $gambar)) {
             return response()->json([
                 'status' => false,
                 'message' => 'Gambar tidak ditemukan'
             ], 404);
         }
+
+        $contentType = $mimeTypes[$extension] ?? 'image/jpeg';
         $imageUrl = storage_path('app/public/uploads/'). $gambar;
 
         return response()->file($imageUrl);
