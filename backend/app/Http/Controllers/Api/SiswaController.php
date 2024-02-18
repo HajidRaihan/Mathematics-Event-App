@@ -87,12 +87,26 @@ class SiswaController extends Controller
      */
     public function show(string $id)
     {
-        $data = Siswa::find($id);
+        $data = Siswa::with('Instansi')->find($id);
         if($data){
+            $instansiNama = $data->Instansi ? $data->Instansi->instansi : null;
             return response()->json([
                 'status'=>true,
                 'message'=>'Data Ditemukan',
-                'data'=>$data
+                'data' => [
+                    'id' => $data->id,
+                    'nama' => $data->nama,
+                    'nisn' => $data->nisn,
+                    'jenis_kelamin' => $data->jenis_kelamin,
+                    'instansi_nama' => $instansiNama,
+                    'kontak' => $data->kontak,
+                    'email' => $data->email,
+                    'foto' => $data->foto,
+                    'rapor' => $data->rapor,
+                    'status' => $data->status,
+                    'created_at' => $data->created_at,
+                    'updated_at' => $data->updated_at
+                ]
             ],200);
         }else{
             return response()->json([

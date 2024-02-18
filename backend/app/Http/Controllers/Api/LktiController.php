@@ -40,7 +40,6 @@ class LktiController extends Controller
             'kontak_2'=>'required',
             'email_1'=>'required',
             'email_2'=>'required',
-            'username'=>'required',
             'foto_1' => 'required|image|mimes:jpeg,png,jpg|max:512',
             'foto_2' => 'required|image|mimes:jpeg,png,jpg|max:512',
             'foto_3' => 'image|mimes:jpeg,png,jpg|max:512',
@@ -122,12 +121,40 @@ class LktiController extends Controller
      */
     public function show(string $id)
     {
-        $data = Lkti::find($id);
+        $data = Lkti::with('Instansi')->find($id);
         if($data){
+            $instansiNama = $data->Instansi ? $data->Instansi->instansi : null;
             return response()->json([
                 'status'=>true,
                 'message'=>'Data Ditemukan',
-                'data'=>$data
+                'data' => [
+                    'id' => $data->id,
+                    'anggota_1' => $data->anggota_1,
+                    'anggota_2' => $data->anggota_2,
+                    'anggota_3' => $data->anggota_3,
+                    'nim_1' => $data->nim_1,
+                    'nim_2' => $data->nim_2,
+                    'nim_3' => $data->nim_3,
+                    'jenis_kelamin_1' => $data->jenis_kelamin_1,
+                    'jenis_kelamin_2' => $data->jenis_kelamin_2,
+                    'jenis_kelamin_3' => $data->jenis_kelamin_3,
+                    'instansi_nama' => $instansiNama,
+                    'kontak_1' => $data->kontak_1,
+                    'kontak_2' => $data->kontak_2,
+                    'kontak_3' => $data->kontak_3,
+                    'email_1' => $data->email_1,
+                    'email_2' => $data->email_2,
+                    'email_3' => $data->email_3,
+                    'foto_1' => $data->foto_1,
+                    'foto_2' => $data->foto_2,
+                    'foto_3' => $data->foto_3,
+                    'aktif_1' => $data->aktif_1,
+                    'aktif_2' => $data->aktif_2,
+                    'aktif_3' => $data->aktif_3,
+                    'status' => $data->status,
+                    'created_at' => $data->created_at,
+                    'updated_at' => $data->updated_at
+                ]
             ],200);
         }else{
             return response()->json([

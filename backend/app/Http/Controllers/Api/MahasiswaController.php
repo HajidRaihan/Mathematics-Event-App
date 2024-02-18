@@ -40,7 +40,6 @@ class MahasiswaController extends Controller
             'kontak_2'=>'required',
             'email_1'=>'required',
             'email_2'=>'required',
-            'username'=>'required',
             'foto_1' => 'required|image|mimes:jpeg,png,jpg|max:512',
             'foto_2' =>'required|image|mimes:jpeg,png,jpg|max:512',
             'aktif_1' => 'required|image|mimes:jpeg,png,jpg|max:512',
@@ -73,7 +72,6 @@ class MahasiswaController extends Controller
                 'kontak_2'=>$request->input('kontak_2'),
                 'email_1'=>$request->input('email_1'),
                 'email_2'=>$request->input('email_2'),
-                'username'=>$request->input('username'),
                 'foto_1'=>$fotoPath1,
                 'foto_2'=>$fotoPath2,
                 'aktif_1'=>$fotoPath3,
@@ -104,12 +102,33 @@ class MahasiswaController extends Controller
      */
     public function show(string $id)
     {
-        $data = Mahasiswa::find($id);
+        $data = Mahasiswa::with('Instansi')->find($id);
         if($data){
+            $instansiNama = $data->Instansi ? $data->Instansi->instansi : null;
             return response()->json([
                 'status'=>true,
                 'message'=>'Data Ditemukan',
-                'data'=>$data
+                'data' => [
+                    'id' => $data->id,
+                    'anggota_1' => $data->anggota_1,
+                    'anggota_2' => $data->anggota_2,
+                    'nim_1' => $data->nim_1,
+                    'nim_2' => $data->nim_2,
+                    'jenis_kelamin_1' => $data->jenis_kelamin_1,
+                    'jenis_kelamin_2' => $data->jenis_kelamin_2,
+                    'instansi_nama' => $instansiNama,
+                    'kontak_1' => $data->kontak_1,
+                    'kontak_2' => $data->kontak_2,
+                    'email_2' => $data->email_1,
+                    'email_2' => $data->email_2,
+                    'foto_1' => $data->foto_1,
+                    'foto_2' => $data->foto_2,
+                    'aktif_1' => $data->aktif_1,
+                    'aktif_2' => $data->aktif_2,
+                    'status' => $data->status,
+                    'created_at' => $data->created_at,
+                    'updated_at' => $data->updated_at
+                ]
             ],200);
         }else{
             return response()->json([
