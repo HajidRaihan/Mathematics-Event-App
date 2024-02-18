@@ -109,7 +109,7 @@ const PendaftaranInstansi = () => {
             />
           </div>
           <InputForm
-            label="Kabupaten"
+            label="Kabupaten/Kota"
             onChange={(e) => setKabupaten(e.target.value)}
             value={kabupaten}
           />

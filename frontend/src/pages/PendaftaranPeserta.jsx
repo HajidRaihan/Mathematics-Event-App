@@ -4,6 +4,7 @@ import ButtonSubmit from "../components/ButtonSubmit";
 import DaftarModal from "../components/DaftarModal";
 import InputForm from "../components/InputForm";
 import Navbar from "../components/Navbar";
+import Notes from "../components/Notes";
 import { RequestApi } from "../helper/RequestApi";
 
 const PendaftaranPeserta = () => {
@@ -16,8 +17,10 @@ const PendaftaranPeserta = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [foto, setFoto] = useState();
+  const [rapor, setRapor] = useState();
   const [listSekolah, setListSekolah] = useState();
   const [fotoPreview, setFotoPreview] = useState();
+  const [raporPreview, setRaporPreview] = useState();
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -59,8 +62,8 @@ const PendaftaranPeserta = () => {
       instansi_id: sekolahId,
       kontak: kontakWa,
       email: email,
-      username: username,
       foto: foto,
+      rapor: rapor,
     };
 
     console.log({ data });
@@ -97,6 +100,16 @@ const PendaftaranPeserta = () => {
     }
   };
 
+  const raporOnChange = (e) => {
+    // setFoto(e.target.file[0]);
+    console.log(e.target.files);
+    setRapor(e.target.files[0]);
+
+    if (e.target.files && e.target.files[0]) {
+      setRaporPreview(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
   const removeImage = (e) => {
     setFoto(null);
     setFotoPreview(null);
@@ -106,7 +119,7 @@ const PendaftaranPeserta = () => {
     <>
       <Navbar />
       <div className="mb-10 flex flex-col items-center">
-        <div className="flex flex-col gap-5 max-w-[500px]">
+        <div className="flex flex-col gap-5 max-w-[500px] mb-32">
           <InputForm label="Nama" onChange={(e) => setNama(e.target.value)} value={nama} />
           <InputForm label="NISN/NIM" onChange={(e) => setNisn(e.target.value)} value={nisn} />
           <div>
@@ -140,7 +153,6 @@ const PendaftaranPeserta = () => {
               </div>
             </div>
           </div>
-
           <div className="flex gap-3 w-full">
             <div className="w-full">
               <label htmlFor="jenjang" className="text-primary font-bold text-xs">
@@ -164,21 +176,12 @@ const PendaftaranPeserta = () => {
               </select>
             </div>
           </div>
-
           <InputForm
             label="Kontak WA"
             onChange={(e) => setKontakWa(e.target.value)}
             value={kontakWa}
           />
-
-          <div className="flex gap-5 md:flex-row flex-col">
-            <InputForm label="Email" onChange={(e) => setEmail(e.target.value)} value={email} />
-            <InputForm
-              label="username"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
-            />
-          </div>
+          <InputForm label="Email" onChange={(e) => setEmail(e.target.value)} value={email} />
           <div className="flex md:gap-20 gap-5 md:flex-row flex-col">
             <div className="flex flex-col ">
               <p className="text-primary font-bold mb-1 text-xs">Unggah Foto</p>
@@ -210,23 +213,50 @@ const PendaftaranPeserta = () => {
                 </div>
               )}
             </div>
-            {/* <div className="flex flex-col ">
+            <div className="flex flex-col ">
               <p className="text-primary font-bold mb-1 text-xs">Foto Rapor</p>
               <label
-                htmlFor="foto"
+                htmlFor="rapor"
                 className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
               >
                 Unggah
               </label>
               <input
                 type="file"
-                id="foto"
-                className="h-10 rounded-xl bg-white w-40   px-3 hidden"
+                id="rapor"
+                className="h-10 rounded-xl bg-white w-40 px-3 hidden"
+                onChange={raporOnChange}
               />
-            </div> */}
+              {raporPreview && (
+                <div className="w-fit relative mt-5">
+                  <img
+                    src={raporPreview}
+                    alt=""
+                    className="h-full w-28 object-cover object-center rounded-lg z-20 "
+                  />
+                  <div
+                    className="absolute -top-2 -right-2 bg-red-600 rounded-full  w-5 h-5 flex items-center justify-center cursor-pointer"
+                    onClick={removeImage}
+                  >
+                    <p className=" text-white">x</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
           <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
+          <div>
+            <p className="text-primary text-xs font-semibold">
+              Biaya Pendaftaran Rp. 30.000,-/Orang
+            </p>
+            <p className="text-primary text-xs font-semibold">Nomor Rekening Pembayaran:</p>
+            <p className="text-primary text-xs font-semibold">
+              1554-01-001512-53-3 a.n. Mathematics Event (BRI)
+            </p>
+          </div>
+
           {showAlert && <Alert title={alertDesc} />}
+          <Notes />
         </div>
         {showModal && (
           <DaftarModal title="Pendaftaran Siswa berhasil dilakukan" closeHandler={closeHandler} />

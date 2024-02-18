@@ -57,7 +57,17 @@ const DaftarPeserta = () => {
         <img
           src={`http://localhost:8000/api/${row.foto}`}
           alt="foto peserta"
-          className="w-20 h-20 rounded-full my-3"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
+        />
+      ),
+    },
+    {
+      name: "Rapor",
+      selector: (row) => (
+        <img
+          src={`http://localhost:8000/api/${row.rapor}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
       ),
     },
@@ -91,11 +101,6 @@ const DaftarPeserta = () => {
       selector: (row) => row.email,
       innerWidth: "200px",
       cell: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
-    },
-    {
-      name: "Username",
-      selector: (row) => row.username,
-      cell: (row) => <p>{row.username}</p>,
     },
     {
       name: "Status",

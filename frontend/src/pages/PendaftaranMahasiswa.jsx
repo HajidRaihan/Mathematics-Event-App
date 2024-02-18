@@ -266,12 +266,6 @@ const PendaftaranMahasiswa = () => {
             />
           </div>
 
-          <InputForm
-            label="username"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-
           <div className="flex md:gap-20 gap-5 md:flex-row flex-col mt-3">
             <div className="flex flex-col ">
               <p className="text-primary font-bold mb-1 text-xs">Foto Peserta 1</p>
@@ -336,6 +330,15 @@ const PendaftaranMahasiswa = () => {
             </div>
           </div>
           <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
+          <div>
+            <p className="text-primary text-xs font-semibold">
+              Biaya Pendaftaran Rp. 100.000,-/Tim
+            </p>
+            <p className="text-primary text-xs font-semibold">Nomor Rekening Pembayaran:</p>
+            <p className="text-primary text-xs font-semibold">
+              1554-01-001512-53-3 a.n. Mathematics Event (BRI)
+            </p>
+          </div>
           {showAlert && <Alert title={alertDesc} />}
 
           <Notes />
