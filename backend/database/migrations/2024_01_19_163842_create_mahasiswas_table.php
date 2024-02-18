@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('foto_2',512);
             $table->string('aktif_1',512);
             $table->string('aktif_2',512);
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->string('status')->default('belum lunas');
             $table->timestamps();
             $table->foreign('instansi_id')->references('id')->on('instansis');

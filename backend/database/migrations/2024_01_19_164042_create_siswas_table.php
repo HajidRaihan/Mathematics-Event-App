@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('foto',512);
             $table->string('rapor',512);
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->string('status')->default('belum lunas');
             $table->timestamps();
 

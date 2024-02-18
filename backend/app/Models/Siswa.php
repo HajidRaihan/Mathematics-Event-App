@@ -19,6 +19,8 @@ class Siswa extends Model
         'email',
         'foto',
         'rapor',
+        'username',
+        'password',
         'status',
      ];
 

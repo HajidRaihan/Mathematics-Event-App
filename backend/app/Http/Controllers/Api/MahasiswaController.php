@@ -153,6 +153,8 @@ class MahasiswaController extends Controller
 
         $rules =[
             'status'=>'required',
+            'username'=>'required',
+            'password'=>'required',
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -167,6 +169,8 @@ class MahasiswaController extends Controller
 
         $data->update([
             'status'=>$request->input('status'),
+            'username'=>$request->input('username'),
+            'password'=>$request->input('password')
         ]);
         return response()->json([
             'status'=>true,
