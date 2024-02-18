@@ -35,8 +35,8 @@ class SiswaController extends Controller
             'instansi_id'=>'required',
             'kontak'=>'required',
             'email'=>'required',
-            'foto'=>'required|image|mimes:jpeg,png,jpg|max:2048',
-            'username'=>'required',
+            'foto'=>'required|image|mimes:jpeg,png,jpg|max:512',
+            'rapor'=>'required|image|mimes:jpeg,png,jpg|max:512',
         ];
 
         $validator = Validator::make($request->all(),$rules);

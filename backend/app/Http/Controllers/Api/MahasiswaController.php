@@ -41,8 +41,10 @@ class MahasiswaController extends Controller
             'email_1'=>'required',
             'email_2'=>'required',
             'username'=>'required',
-            'foto_1' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'foto_2' =>'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_1' => 'required|image|mimes:jpeg,png,jpg|max:512',
+            'foto_2' =>'required|image|mimes:jpeg,png,jpg|max:512',
+            'aktif_1' => 'required|image|mimes:jpeg,png,jpg|max:512',
+            'aktif_2' =>'required|image|mimes:jpeg,png,jpg|max:512',
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -57,6 +59,8 @@ class MahasiswaController extends Controller
         try{
             $fotoPath1 = $request->file('foto_1')->store('uploads', 'public');
             $fotoPath2 = $request->file('foto_2')->store('uploads', 'public');
+            $fotoPath3 = $request->file('aktif_1')->store('uploads', 'public');
+            $fotoPath4 = $request->file('aktif_2')->store('uploads', 'public');
             Mahasiswa::create([
                 'anggota_1'=>$request->input('anggota_1'),
                 'anggota_2'=>$request->input('anggota_2'),
@@ -72,6 +76,8 @@ class MahasiswaController extends Controller
                 'username'=>$request->input('username'),
                 'foto_1'=>$fotoPath1,
                 'foto_2'=>$fotoPath2,
+                'aktif_1'=>$fotoPath3,
+                'aktif_2'=>$fotoPath4,
             ]);
             return response()->json([
                 'status'=>true,

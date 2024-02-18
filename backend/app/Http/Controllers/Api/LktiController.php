@@ -41,9 +41,12 @@ class LktiController extends Controller
             'email_1'=>'required',
             'email_2'=>'required',
             'username'=>'required',
-            'foto_1' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'foto_2' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'foto_3' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto_1' => 'required|image|mimes:jpeg,png,jpg|max:512',
+            'foto_2' => 'required|image|mimes:jpeg,png,jpg|max:512',
+            'foto_3' => 'image|mimes:jpeg,png,jpg|max:512',
+            'aktif_1' => 'required|image|mimes:jpeg,png,jpg|max:512',
+            'aktif_2' => 'required|image|mimes:jpeg,png,jpg|max:512',
+            'aktif_3' => 'image|mimes:jpeg,png,jpg|max:512',
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -63,6 +66,13 @@ class LktiController extends Controller
             }else{
                 $fotoPath3 = null;
             }
+            $fotoPath4 = $request->file('aktif_1')->store('uploads', 'public');
+            $fotoPath5 = $request->file('aktif_2')->store('uploads', 'public');
+            if ($request->hasFile('aktif_3')){
+                $fotoPath6 = $request->file('aktif_3')->store('uploads', 'public');
+            }else{
+                $fotoPath6 = null;
+            }
             Lkti::create([
                 'anggota_1'=>$request->input('anggota_1'),
                 'anggota_2'=>$request->input('anggota_2'),
@@ -80,10 +90,12 @@ class LktiController extends Controller
                 'email_1'=>$request->input('email_1'),
                 'email_2'=>$request->input('email_2'),
                 'email_3'=>$request->input('email_3'),
-                'username'=>$request->input('username'),
                 'foto_1'=>$fotoPath1,
                 'foto_2'=>$fotoPath2,
                 'foto_3'=>$fotoPath3,
+                'aktif_1'=>$fotoPath4,
+                'aktif_2'=>$fotoPath5,
+                'aktif_3'=>$fotoPath6,
             ]);
             return response()->json([
                 'status'=>true,

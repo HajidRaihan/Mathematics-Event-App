@@ -19,8 +19,8 @@ return new class extends Migration
             $table->UnsignedBigInteger('instansi_id');
             $table->string('kontak');
             $table->string('email');
-            $table->string('foto',2048);
-            $table->string('username');
+            $table->string('foto',512);
+            $table->string('rapor',512);
             $table->string('status')->default('belum lunas');
             $table->timestamps();
 

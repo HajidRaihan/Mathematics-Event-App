@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\InstansiController;
 use App\Http\Controllers\Api\LktiController;
 use App\Http\Controllers\Api\MahasiswaController;
@@ -26,3 +27,4 @@ Route::apiResource('instansi',InstansiController::class);
 Route::apiResource('siswa',SiswaController::class);
 Route::apiResource('mahasiswa',MahasiswaController::class);
 Route::apiResource('lkti',LktiController::class);
+Route::get('gambar/{gambar}',[ImageController::class,'show']);

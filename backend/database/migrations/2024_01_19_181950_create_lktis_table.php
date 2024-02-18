@@ -29,10 +29,12 @@ return new class extends Migration
             $table->string('email_1');
             $table->string('email_2');
             $table->string('email_3')->nullable();
-            $table->string('foto_1',2048);
-            $table->string('foto_2',2048);
-            $table->string('foto_3',2048)->nullable();
-            $table->string('username');
+            $table->string('foto_1',512);
+            $table->string('foto_2',512);
+            $table->string('foto_3',512)->nullable();
+            $table->string('aktif_1',512);
+            $table->string('aktif_2',512);
+            $table->string('aktif_3',512)->nullable();
             $table->string('status')->default('belum lunas');
             $table->timestamps();
 

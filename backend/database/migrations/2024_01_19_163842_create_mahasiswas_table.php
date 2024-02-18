@@ -24,9 +24,10 @@ return new class extends Migration
             $table->string('kontak_2');
             $table->string('email_1');
             $table->string('email_2');
-            $table->string('foto_1',2048);
-            $table->string('foto_2',2048);
-            $table->string('username');
+            $table->string('foto_1',512);
+            $table->string('foto_2',512);
+            $table->string('aktif_1',512);
+            $table->string('aktif_2',512);
             $table->string('status')->default('belum lunas');
             $table->timestamps();
             $table->foreign('instansi_id')->references('id')->on('instansis');

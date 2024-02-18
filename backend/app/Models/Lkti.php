@@ -29,7 +29,9 @@ class Lkti extends Model
         'foto_1',
         'foto_2',
         'foto_3',
-        'username',
+        'aktif_1',
+        'aktif_2',
+        'aktif_3',
         'status',
     ];
     public function instansi(): BelongsTo
