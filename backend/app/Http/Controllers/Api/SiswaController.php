@@ -49,7 +49,8 @@ class SiswaController extends Controller
             ]);
         }
         try{
-            $fotoPath = $request->file('foto')->store('uploads', 'public');
+            $fotoPath1 = $request->file('foto')->store('uploads', 'public');
+            $fotoPath2 = $request->file('rapor')->store('uploads', 'public');
             Siswa::create([
                 'nama'=>$request->input('nama'),
                 'nisn'=>$request->input('nisn'),
@@ -57,8 +58,8 @@ class SiswaController extends Controller
                 'instansi_id'=>$request->input('instansi_id'),
                 'kontak'=>$request->input('kontak'),
                 'email'=>$request->input('email'),
-                'username'=>$request->input('username'),
-                'foto'=>$fotoPath,
+                'foto'=>$fotoPath1,
+                'rapor'=>$fotoPath2,
             ]);
             return response()->json([
                 'status'=>true,
