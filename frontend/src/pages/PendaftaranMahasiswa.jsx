@@ -5,6 +5,7 @@ import InputForm from "../components/InputForm";
 import Navbar from "../components/Navbar";
 import Alert from "../components/Alert";
 import { RequestApi } from "../helper/RequestApi";
+import Notes from "../components/Notes";
 
 const PendaftaranMahasiswa = () => {
   const [genderOption1, setGenderOption1] = useState();
@@ -336,6 +337,8 @@ const PendaftaranMahasiswa = () => {
           </div>
           <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
           {showAlert && <Alert title={alertDesc} />}
+
+          <Notes />
         </div>
         {showModal && (
           <DaftarModal

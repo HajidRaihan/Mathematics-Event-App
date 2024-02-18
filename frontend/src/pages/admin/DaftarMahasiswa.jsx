@@ -14,6 +14,24 @@ const DaftarMahasiswa = () => {
     };
     getMahasiswa();
   }, []);
+
+  const conditionalRowStyles = [
+    {
+      when: (row) => row.status === "belum lunas",
+      style: {
+        backgroundColor: "red",
+        color: "white",
+        "&:hover": {
+          cursor: "pointer",
+        },
+      },
+    },
+    // You can also pass a callback to style for additional customization
+    // {
+    //   when: (row) => row.calories < 400,
+    //   style: (row) => ({ backgroundColor: row.isSpecial ? "pink" : "inerit" }),
+    // },
+  ];
   const columns = [
     {
       name: "id",
@@ -228,6 +246,7 @@ const DaftarMahasiswa = () => {
           data={dataPeserta}
           title={`Peserta Mahasiswa | ${dataPeserta?.length}`}
           pagination
+          conditionalRowStyles={conditionalRowStyles}
           scrollX
         />
       </div>
