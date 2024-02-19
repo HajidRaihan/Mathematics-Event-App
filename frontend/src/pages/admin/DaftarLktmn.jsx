@@ -3,11 +3,11 @@ import DataTable from "react-data-table-component";
 import { useEffect, useState } from "react";
 import { RequestApi } from "../../helper/RequestApi";
 
-const DaftarMahasiswa = () => {
+const DaftarLktmn = () => {
   const [dataPeserta, setDataPeserta] = useState();
   useEffect(() => {
     const getMahasiswa = async () => {
-      const res = await RequestApi("GET", `mahasiswa`, {}, {}, "Mencoba Mengambil Data Instansi");
+      const res = await RequestApi("GET", `lkti`, {}, {}, "Mencoba Mengambil Data Instansi");
 
       setDataPeserta(res.data);
       console.log(res.data);
@@ -59,6 +59,16 @@ const DaftarMahasiswa = () => {
       ),
     },
     {
+      name: "Foto3",
+      selector: (row) => (
+        <img
+          src={`http://localhost:8000/api/${row.foto_3}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
+        />
+      ),
+    },
+    {
       name: "Anggota 1",
       selector: (row) => row.anggota_1,
       cell: (row) => <p>{row.anggota_1}</p>,
@@ -67,6 +77,11 @@ const DaftarMahasiswa = () => {
       name: "Anggota 2",
       selector: (row) => row.anggota_2,
       cell: (row) => <p>{row.anggota_2}</p>,
+    },
+    {
+      name: "Anggota 3",
+      selector: (row) => row.anggota_3,
+      cell: (row) => <p>{row.anggota_3}</p>,
     },
     {
       name: "Nim 1",
@@ -79,6 +94,11 @@ const DaftarMahasiswa = () => {
       cell: (row) => <p>{row.nim_2}</p>,
     },
     {
+      name: "Nim 3",
+      selector: (row) => row.nim_3,
+      cell: (row) => <p>{row.nim_3}</p>,
+    },
+    {
       name: "Gender 1",
       selector: (row) => row.jenis_kelamin_1,
       cell: (row) => <p>{row.jenis_kelamin_1}</p>,
@@ -87,6 +107,11 @@ const DaftarMahasiswa = () => {
       name: "Gender 2",
       selector: (row) => row.jenis_kelamin_2,
       cell: (row) => <p>{row.jenis_kelamin_2}</p>,
+    },
+    {
+      name: "Gender 3",
+      selector: (row) => row.jenis_kelamin_3,
+      cell: (row) => <p>{row.jenis_kelamin_3}</p>,
     },
     {
       name: "instansi",
@@ -104,6 +129,11 @@ const DaftarMahasiswa = () => {
       cell: (row) => <p>{row.kontak_2}</p>,
     },
     {
+      name: "Kontak 3",
+      selector: (row) => row.kontak_3,
+      cell: (row) => <p>{row.kontak_3}</p>,
+    },
+    {
       name: "email 1",
       selector: (row) => row.email_1,
       cell: (row) => <p>{row.email_1}</p>,
@@ -112,6 +142,11 @@ const DaftarMahasiswa = () => {
       name: "email 2",
       selector: (row) => row.email_2,
       cell: (row) => <p>{row.email_2}</p>,
+    },
+    {
+      name: "email 3",
+      selector: (row) => row.email_3,
+      cell: (row) => <p>{row.email_3}</p>,
     },
     {
       name: "Username",
@@ -142,4 +177,4 @@ const DaftarMahasiswa = () => {
   );
 };
 
-export default DaftarMahasiswa;
+export default DaftarLktmn;

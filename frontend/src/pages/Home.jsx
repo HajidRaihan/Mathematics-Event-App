@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import Logo from "../assets/logo.png";
 
 const Home = () => {
   useEffect(() => {

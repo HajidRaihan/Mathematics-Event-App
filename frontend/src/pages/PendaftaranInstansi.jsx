@@ -76,6 +76,8 @@ const PendaftaranInstansi = () => {
       <Navbar />
       <div className="mb-10 flex flex-col items-center">
         <div className="flex flex-col gap-5 md:w-[500px]">
+          <h1 className="text-3xl font-bold text-primary">Pendaftaran Instansi</h1>
+          <div className="w-full h-0.5 bg-primary mb-5" />
           <InputForm
             label="Nama Sekolah"
             onChange={(e) => setNamaSekolah(e.target.value)}
