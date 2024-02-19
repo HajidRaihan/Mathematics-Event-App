@@ -103,6 +103,18 @@ const DaftarPeserta = () => {
       cell: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
     },
     {
+      name: "username",
+      selector: (row) => row.username,
+      innerWidth: "200px",
+      cell: (row) => <p>{row.username}</p>,
+    },
+    {
+      name: "password",
+      selector: (row) => row.password,
+      innerWidth: "200px",
+      cell: (row) => <p>{row.password}</p>,
+    },
+    {
       name: "Status",
       selector: (row) => row.status,
       cell: (row) => (
@@ -116,9 +128,10 @@ const DaftarPeserta = () => {
           />
           {/* <ChangeStatus /> */}
 
-          {openModal && <ChangeStatusModal close={closeModalHandler} id={selectedId} />}
+          {openModal && <ChangeStatusModal close={closeModalHandler} id={selectedId} url="siswa" />}
         </div>
       ),
+      sortable: true,
     },
   ];
 

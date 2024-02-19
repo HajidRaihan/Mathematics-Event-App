@@ -99,7 +99,6 @@ const PendaftaranLkti = () => {
       aktif_1: aktif1,
       aktif_2: aktif2,
       aktif_3: aktif3,
-      username: "akjshkajsh",
     };
 
     console.log({ data });
@@ -110,6 +109,31 @@ const PendaftaranLkti = () => {
       if (res.status === true) {
         openHandler();
         setIsLoading(false);
+
+        setNama1("");
+        setNama2("");
+        setNama3("");
+        setNim1("");
+        setNim2("");
+        setNim3("");
+        setKontak1("");
+        setKontak2("");
+        setKontak3("");
+        setEmail1("");
+        setEmail2("");
+        setEmail3("");
+        setFoto1(null);
+        setFotoPreview1(null);
+        setFoto2(null);
+        setFotoPreview2(null);
+        setFoto3(null);
+        setFotoPreview3(null);
+        setAktif1(null);
+        setAktifPreview1(null);
+        setAktif2(null);
+        setAktifPreview2(null);
+        setAktif3(null);
+        setAktifPreview3(null);
       }
       if (res.status === false) {
         showAlertHandler(res.message);
@@ -213,7 +237,10 @@ const PendaftaranLkti = () => {
       <div className="mb-10 flex flex-col items-center">
         <div className="flex flex-col gap-3 md:w-[700px] mb-32">
           <h1 className="text-3xl font-bold text-primary">Pendaftaran LKTMN</h1>
-          <div className="w-full h-0.5 bg-primary mb-5" />
+          <div className="w-full h-0.5 bg-primary" />
+          <p className="text-xs text-red-500  mb-5">
+            Catatan : Minimal Jumlah tim adalah sebanyak 2 peserta
+          </p>
           <div className="flex md:flex-row flex-col gap-5">
             <InputForm
               label="Nama Peserta 1"
@@ -506,7 +533,7 @@ const PendaftaranLkti = () => {
           <div className="flex md:gap-20 gap-5 md:flex-row flex-col mt-3">
             <div className="flex flex-col ">
               <p className="text-primary font-bold mb-1 text-xs">
-                Aktif Peserta 1{" "}
+                Scan Surat Aktif Kuliah 1{" "}
                 <span className="text-red-600 text-[10px] font-normal">
                   (jpg, png, jpeg) max 500kb
                 </span>
@@ -541,7 +568,7 @@ const PendaftaranLkti = () => {
             </div>
             <div className="flex flex-col">
               <p className="text-primary font-bold mb-1 text-xs">
-                Aktif Peserta 2{" "}
+                Scan Surat Aktif Kuliah 2{" "}
                 <span className="text-red-600 text-[10px] font-normal">
                   (jpg, png, jpeg) max 500kb
                 </span>
@@ -577,7 +604,7 @@ const PendaftaranLkti = () => {
             </div>
             <div className="flex flex-col">
               <p className="text-primary font-bold mb-1 text-xs">
-                Aktif Peserta 3{" "}
+                Scan Surat Aktif Kuliah 3{" "}
                 <span className="text-red-600 text-[10px] font-normal">
                   (jpg, png, jpeg) max 500kb
                 </span>
@@ -612,6 +639,20 @@ const PendaftaranLkti = () => {
               )}
             </div>
           </div>
+          <p className="text-red-700 mt-3">
+            Upload Abstrak dibawah ini sebelum submit pendaftaran !
+          </p>
+          <button
+            onClick={() =>
+              window.open(
+                "https://docs.google.com/forms/d/1Xh6mtChpEOW2CIYVGOo9dwIIJTOyg-tvLHP8Nwr-dYg/viewform?edit_requested=true"
+              )
+            }
+            target="_blank"
+            className="text-xs font-semibold w-40 p-2 border-none mb-5 bg-primary text-center text-white rounded-xl cursor-pointer"
+          >
+            Upload Abstrak
+          </button>
           <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
           {/* <div>
             <p className="text-primary text-xs font-semibold">

@@ -7,7 +7,7 @@ const AdminNav = () => {
   const navigate = useNavigate();
   return (
     <aside className="w-52 min-w-52 shadow-xl h-screen p-5 flex flex-col gap-3 bg-white">
-      <div className="flex items-center gap-2" onClick={() => navigate("/admin/peserta")}>
+      <div className="flex items-center gap-2" onClick={() => navigate("/admin/dashboard")}>
         <img src={DashboardIcon} alt="dashboardicon" className="h-5  w-5" />
         <p className="text-primary text-xs  font-semibold">Dashboard</p>
       </div>

@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between md:mx-32 mx-5 h-20 items-center">
       <div>
-        <img src={Logo} alt="" className="w-20 h-20" />
+        <img src={Logo} alt="" className="w-20 h-20 cursor-pointer" onClick={() => navigate("/")} />
       </div>
       <div className="flex gap-5 uppercase text-primary font-semibold items-center text-sm">
         <a href="">Pengumuman</a>

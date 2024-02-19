@@ -37,6 +37,7 @@ const DaftarLktmn = () => {
       name: "id",
       selector: (row) => row.id,
       cell: (row) => <p>{row.id}</p>,
+      sortable: true,
     },
     {
       name: "Foto1",

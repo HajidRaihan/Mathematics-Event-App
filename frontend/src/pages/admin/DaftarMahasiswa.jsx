@@ -2,9 +2,14 @@ import AdminNav from "../../components/AdminNav";
 import DataTable from "react-data-table-component";
 import { useEffect, useState } from "react";
 import { RequestApi } from "../../helper/RequestApi";
+import ChangeStatusModal from "../../components/ChangeStatusModal";
+import EditIcon from "../../../src/assets/edit-icon.svg";
 
 const DaftarMahasiswa = () => {
   const [dataPeserta, setDataPeserta] = useState();
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedId, setSelectedId] = useState();
+
   useEffect(() => {
     const getMahasiswa = async () => {
       const res = await RequestApi("GET", `mahasiswa`, {}, {}, "Mencoba Mengambil Data Instansi");
@@ -14,6 +19,15 @@ const DaftarMahasiswa = () => {
     };
     getMahasiswa();
   }, []);
+
+  const openModalHandler = (id) => {
+    setOpenModal(true);
+    setSelectedId(id);
+  };
+
+  const closeModalHandler = () => {
+    setOpenModal(false);
+  };
 
   const conditionalRowStyles = [
     {
@@ -37,7 +51,9 @@ const DaftarMahasiswa = () => {
       name: "id",
       selector: (row) => row.id,
       cell: (row) => <p>{row.id}</p>,
+      sortable: true,
     },
+
     {
       name: "Foto1",
       selector: (row) => (
@@ -119,9 +135,29 @@ const DaftarMahasiswa = () => {
       cell: (row) => <p>{row.username}</p>,
     },
     {
+      name: "password",
+      selector: (row) => row.password,
+      cell: (row) => <p>{row.password}</p>,
+    },
+    {
       name: "Status",
       selector: (row) => row.status,
-      cell: (row) => <p>{row.status}</p>,
+      cell: (row) => (
+        <div className="flex gap-3">
+          <p>{row.status}</p>
+          <img
+            src={EditIcon}
+            alt=""
+            className="w-5 h-5 cursor-pointer"
+            onClick={() => openModalHandler(row.id)}
+          />
+
+          {openModal && (
+            <ChangeStatusModal close={closeModalHandler} id={selectedId} url="mahasiswa" />
+          )}
+        </div>
+      ),
+      sortable: true,
     },
   ];
 
