@@ -25,7 +25,7 @@ class Mahasiswa extends Model
         'foto_2',
         'aktif_1',
         'aktif_2',
-        'uesrname',
+        'username',
         'password',
         'status',
     ];

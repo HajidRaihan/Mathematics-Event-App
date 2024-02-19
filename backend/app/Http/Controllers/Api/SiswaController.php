@@ -15,12 +15,24 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = Siswa::orderBy('id','asc')->get();
-        return response()->json([
-            'status'=>true,
-            'message'=>'Data Ditemukan',
-            'data'=>$data
-        ],200);
+        $data = Siswa::with('Instansi')->orderBy('id','asc')->get();
+        if ($data->isNotEmpty()) {
+            $data->transform(function ($item) {
+                $item->instansi_id = $item->Instansi ? $item->Instansi->instansi : null;
+                return $item;
+            });
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Data Ditemukan',
+                'data' => $data->toArray()
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data Tidak Ditemukan'
+            ], 404);
+        }
     }
 
     /**

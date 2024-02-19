@@ -17,11 +17,18 @@ class InstansiController extends Controller
     public function index()
     {
         $data = Instansi::orderBy('id','asc')->get();
-        return response()->json([
-            'status'=>true,
-            'message'=>'Data Ditemukan',
-            'data'=>$data
-        ],200);
+        if($data->isNotEmpty()){
+            return response()->json([
+                'status'=>true,
+                'message'=>'Data Ditemukan',
+                'data'=>$data
+            ],200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Data Tidak Ditemukan'
+            ], 404);
+        }
     }
 
     /**
