@@ -55,7 +55,7 @@ const DaftarPeserta = () => {
       name: "Foto",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.foto}`}
+          src={`http://api.univmart.com/api/${row.foto}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -65,7 +65,7 @@ const DaftarPeserta = () => {
       name: "Rapor",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.rapor}`}
+          src={`http://api.univmart.com/api/${row.rapor}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />

@@ -58,7 +58,7 @@ const DaftarMahasiswa = () => {
       name: "Foto1",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.foto_1}`}
+          src={`http://api.univmart.com/api/${row.foto_1}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -68,7 +68,27 @@ const DaftarMahasiswa = () => {
       name: "Foto2",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.foto_2}`}
+          src={`http://api.univmart.com/api/${row.foto_2}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
+        />
+      ),
+    },
+    {
+      name: "Akitif_1",
+      selector: (row) => (
+        <img
+          src={`http://api.univmart.com/api/${row.aktif_1}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
+        />
+      ),
+    },
+    {
+      name: "Akitif_2",
+      selector: (row) => (
+        <img
+          src={`http://api.univmart.com/api/${row.aktif_2}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />

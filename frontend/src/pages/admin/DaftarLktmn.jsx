@@ -43,7 +43,7 @@ const DaftarLktmn = () => {
       name: "Foto1",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.foto_1}`}
+          src={`http://api.univmart.com/api/${row.foto_1}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -53,7 +53,7 @@ const DaftarLktmn = () => {
       name: "Foto2",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.foto_2}`}
+          src={`http://api.univmart.com/api/${row.foto_2}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -63,7 +63,37 @@ const DaftarLktmn = () => {
       name: "Foto3",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.foto_3}`}
+          src={`http://api.univmart.com/api/${row.foto_3}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
+        />
+      ),
+    },
+    {
+      name: "Aktif_1",
+      selector: (row) => (
+        <img
+          src={`http://api.univmart.com/api/${row.aktif_1}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
+        />
+      ),
+    },
+    {
+      name: "Aktif_2",
+      selector: (row) => (
+        <img
+          src={`http://api.univmart.com/api/${row.aktif_2}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
+        />
+      ),
+    },
+    {
+      name: "Aktif_3",
+      selector: (row) => (
+        <img
+          src={`http://api.univmart.com/api/${row.aktif_3}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
