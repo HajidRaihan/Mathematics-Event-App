@@ -79,12 +79,10 @@ const PendaftaranMahasiswa = () => {
       kontak_2: kontak2,
       email_1: email1,
       email_2: email2,
-      username: username,
       foto_1: foto1,
       foto_2: foto2,
       aktif_1: aktif1,
       aktif_2: aktif2,
-      username: "akjshkajsh",
     };
 
     console.log({ data });
@@ -95,6 +93,22 @@ const PendaftaranMahasiswa = () => {
       if (res.status === true) {
         openHandler();
         setIsLoading(false);
+        setNama1("");
+        setNama2("");
+        setNim1("");
+        setnim2("");
+        setKontak1("");
+        setKontak2("");
+        setEmail1("");
+        setEmail2("");
+        setFoto1(null);
+        setFotoPreview1(null);
+        setFoto2(null);
+        setFotoPreview2(null);
+        setAktif1(null);
+        setAktifPreview1(null);
+        setAktif2(null);
+        setAktifPreview2(null);
       }
       if (res.status === false) {
         showAlertHandler(res.message);

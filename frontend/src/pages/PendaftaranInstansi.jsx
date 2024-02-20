@@ -56,6 +56,13 @@ const PendaftaranInstansi = () => {
       if (res.status === true) {
         openHandler();
         setIsLoading(false);
+        setNamaSekolah("");
+        setAlamat("");
+        setProvinsi("");
+        setEmail("");
+        setKabupaten("");
+        setKontakWa("");
+        setkontakPendamping("");
       }
       if (res.status === false) {
         showAlertHandler(res.message);
@@ -136,7 +143,12 @@ const PendaftaranInstansi = () => {
           <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
           {showAlert && <Alert title={alertDesc} />}
         </div>
-        {showModal && <DaftarModal closeHandler={closeHandler} />}
+        {showModal && (
+          <DaftarModal
+            closeHandler={closeHandler}
+            title={"Pendaftaran Instansi Berhasil Dilakukan"}
+          />
+        )}
       </div>
     </>
   );

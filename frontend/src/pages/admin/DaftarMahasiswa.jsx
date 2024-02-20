@@ -2,9 +2,14 @@ import AdminNav from "../../components/AdminNav";
 import DataTable from "react-data-table-component";
 import { useEffect, useState } from "react";
 import { RequestApi } from "../../helper/RequestApi";
+import ChangeStatusModal from "../../components/ChangeStatusModal";
+import EditIcon from "../../../src/assets/edit-icon.svg";
 
 const DaftarMahasiswa = () => {
   const [dataPeserta, setDataPeserta] = useState();
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedId, setSelectedId] = useState();
+
   useEffect(() => {
     const getMahasiswa = async () => {
       const res = await RequestApi("GET", `mahasiswa`, {}, {}, "Mencoba Mengambil Data Instansi");
@@ -14,6 +19,15 @@ const DaftarMahasiswa = () => {
     };
     getMahasiswa();
   }, []);
+
+  const openModalHandler = (id) => {
+    setOpenModal(true);
+    setSelectedId(id);
+  };
+
+  const closeModalHandler = () => {
+    setOpenModal(false);
+  };
 
   const conditionalRowStyles = [
     {
@@ -37,12 +51,14 @@ const DaftarMahasiswa = () => {
       name: "id",
       selector: (row) => row.id,
       cell: (row) => <p>{row.id}</p>,
+      sortable: true,
     },
+
     {
       name: "Foto1",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.foto_1}`}
+          src={`http://api.univmart.com/api/${row.foto_1}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -52,7 +68,27 @@ const DaftarMahasiswa = () => {
       name: "Foto2",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.foto_2}`}
+          src={`http://api.univmart.com/api/${row.foto_2}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
+        />
+      ),
+    },
+    {
+      name: "Akitif_1",
+      selector: (row) => (
+        <img
+          src={`http://api.univmart.com/api/${row.aktif_1}`}
+          alt="foto peserta"
+          className="w-20 h-20 rounded-full my-3 object-cover object-center"
+        />
+      ),
+    },
+    {
+      name: "Akitif_2",
+      selector: (row) => (
+        <img
+          src={`http://api.univmart.com/api/${row.aktif_2}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -119,9 +155,29 @@ const DaftarMahasiswa = () => {
       cell: (row) => <p>{row.username}</p>,
     },
     {
+      name: "password",
+      selector: (row) => row.password,
+      cell: (row) => <p>{row.password}</p>,
+    },
+    {
       name: "Status",
       selector: (row) => row.status,
-      cell: (row) => <p>{row.status}</p>,
+      cell: (row) => (
+        <div className="flex gap-3">
+          <p>{row.status}</p>
+          <img
+            src={EditIcon}
+            alt=""
+            className="w-5 h-5 cursor-pointer"
+            onClick={() => openModalHandler(row.id)}
+          />
+
+          {openModal && (
+            <ChangeStatusModal close={closeModalHandler} id={selectedId} url="mahasiswa" />
+          )}
+        </div>
+      ),
+      sortable: true,
     },
   ];
 

@@ -55,7 +55,7 @@ const DaftarPeserta = () => {
       name: "Foto",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.foto}`}
+          src={`http://api.univmart.com/api/${row.foto}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -65,7 +65,7 @@ const DaftarPeserta = () => {
       name: "Rapor",
       selector: (row) => (
         <img
-          src={`http://localhost:8000/api/${row.rapor}`}
+          src={`http://api.univmart.com/api/${row.rapor}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -103,6 +103,18 @@ const DaftarPeserta = () => {
       cell: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
     },
     {
+      name: "username",
+      selector: (row) => row.username,
+      innerWidth: "200px",
+      cell: (row) => <p>{row.username}</p>,
+    },
+    {
+      name: "password",
+      selector: (row) => row.password,
+      innerWidth: "200px",
+      cell: (row) => <p>{row.password}</p>,
+    },
+    {
       name: "Status",
       selector: (row) => row.status,
       cell: (row) => (
@@ -116,9 +128,10 @@ const DaftarPeserta = () => {
           />
           {/* <ChangeStatus /> */}
 
-          {openModal && <ChangeStatusModal close={closeModalHandler} id={selectedId} />}
+          {openModal && <ChangeStatusModal close={closeModalHandler} id={selectedId} url="siswa" />}
         </div>
       ),
+      sortable: true,
     },
   ];
 

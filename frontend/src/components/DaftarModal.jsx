@@ -11,13 +11,13 @@ const DaftarModal = ({ id, closeHandler, title }) => {
     <dialog id={"daftarmodal"} className="modal py-10">
       <div className="modal-box bg-white flex flex-col items-center">
         <p className="py-4 font-bold text-center">{title}</p>
-        <p>Silahkan lakukan pembayaran ke </p>
+        {/* <p>Silahkan lakukan pembayaran ke </p> */}
         <div className="modal-action flex flex-wrap justify-center gap-2">
           {/* if there is a button in form, it will close the modal */}
           <button className="btn text-xs" onClick={closeHandler}>
             Tutup
           </button>
-          <button className="btn text-xs" onClick={() => navigate("/pendaftaran/siswa")}>
+          <button className="btn text-xs" onClick={() => navigate("/")}>
             Kembali ke home
           </button>
           {/* <button className="btn text-xs" onClick={() => navigate("/pendaftaran/siswa")}>
