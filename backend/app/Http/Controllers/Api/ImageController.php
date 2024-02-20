@@ -34,6 +34,7 @@ class ImageController extends Controller
         'jpg' => 'image/jpeg',
         'jpeg' => 'image/jpeg',
         'png' => 'image/png',
+        'pdf' => 'file/pdf'
     ];
         if (!Storage::disk('public')->exists('uploads/' . $gambar)) {
             return response()->json([

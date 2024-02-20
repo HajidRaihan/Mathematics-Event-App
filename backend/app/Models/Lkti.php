@@ -32,6 +32,9 @@ class Lkti extends Model
         'aktif_1',
         'aktif_2',
         'aktif_3',
+        'formulir',
+        'orisinalitas',
+        'abstrak',
         'status',
     ];
     public function instansi(): BelongsTo

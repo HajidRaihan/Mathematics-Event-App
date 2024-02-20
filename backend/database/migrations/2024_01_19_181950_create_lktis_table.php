@@ -35,6 +35,9 @@ return new class extends Migration
             $table->string('aktif_1',512);
             $table->string('aktif_2',512);
             $table->string('aktif_3',512)->nullable();
+            $table->string('formulir',512);
+            $table->string('orisinalitas',512);
+            $table->string('abstrak',512);
             $table->string('status')->default('belum lunas');
             $table->timestamps();
 

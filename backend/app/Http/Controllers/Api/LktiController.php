@@ -58,6 +58,9 @@ class LktiController extends Controller
             'aktif_1' => 'required|image|mimes:jpeg,png,jpg|max:512',
             'aktif_2' => 'required|image|mimes:jpeg,png,jpg|max:512',
             'aktif_3' => 'image|mimes:jpeg,png,jpg|max:512',
+            'formulir' => 'required|file|mimes:pdf|max:512',
+            'orisinalitas' => 'required|file|mimes:pdf|max:512',
+            'abstrak' => 'required|file|mimes:pdf|max:512',
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -84,6 +87,9 @@ class LktiController extends Controller
             }else{
                 $fotoPath6 = null;
             }
+            $fotoPath7 = $request->file('formulir')->store('uploads', 'public');
+            $fotoPath8 = $request->file('orisinalitas')->store('uploads', 'public');
+            $fotoPath9 = $request->file('abstrak')->store('uploads', 'public');
             Lkti::create([
                 'anggota_1'=>$request->input('anggota_1'),
                 'anggota_2'=>$request->input('anggota_2'),
@@ -107,6 +113,9 @@ class LktiController extends Controller
                 'aktif_1'=>$fotoPath4,
                 'aktif_2'=>$fotoPath5,
                 'aktif_3'=>$fotoPath6,
+                'formulir'=>$fotoPath7,
+                'orisinalitas'=>$fotoPath8,
+                'abstrak'=>$fotoPath9,
             ]);
             return response()->json([
                 'status'=>true,
@@ -163,6 +172,9 @@ class LktiController extends Controller
                     'aktif_1' => $data->aktif_1,
                     'aktif_2' => $data->aktif_2,
                     'aktif_3' => $data->aktif_3,
+                    'formulir' => $data->formulir,
+                    'orisinalitas' => $data->orisinalitas,
+                    'abstrak' => $data->abstrak,
                     'status' => $data->status,
                     'created_at' => $data->created_at,
                     'updated_at' => $data->updated_at
