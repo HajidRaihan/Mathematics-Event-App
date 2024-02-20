@@ -23,10 +23,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
+});
+
 Route::apiResource('instansi',InstansiController::class);
 Route::apiResource('siswa',SiswaController::class);
 Route::apiResource('mahasiswa',MahasiswaController::class);
 Route::apiResource('lkti',LktiController::class);
 Route::apiResource('user',UserController::class);
 Route::get('uploads/{gambar}',[ImageController::class,'show']);
-});
