@@ -137,6 +137,8 @@ class MahasiswaController extends Controller
                     'foto_2' => $data->foto_2,
                     'aktif_1' => $data->aktif_1,
                     'aktif_2' => $data->aktif_2,
+                    'username'=>$data->username,
+                    'password'=>$data->password,
                     'status' => $data->status,
                     'created_at' => $data->created_at,
                     'updated_at' => $data->updated_at

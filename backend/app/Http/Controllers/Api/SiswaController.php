@@ -49,6 +49,7 @@ class SiswaController extends Controller
             'email'=>'required',
             'foto'=>'required|image|mimes:jpeg,png,jpg|max:512',
             'rapor'=>'required|file|mimes:pdf|max:512',
+            'regional'=>'required'
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -72,6 +73,7 @@ class SiswaController extends Controller
                 'email'=>$request->input('email'),
                 'foto'=>$fotoPath1,
                 'rapor'=>$fotoPath2,
+                'regional'=>strtoupper($request->input('regional')),
             ]);
             return response()->json([
                 'status'=>true,
@@ -115,7 +117,10 @@ class SiswaController extends Controller
                     'email' => $data->email,
                     'foto' => $data->foto,
                     'rapor' => $data->rapor,
+                    'regional'=>$data->regional,
                     'status' => $data->status,
+                    'username'=>$data->username,
+                    'password'=>$data->password,
                     'created_at' => $data->created_at,
                     'updated_at' => $data->updated_at
                 ]
