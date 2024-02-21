@@ -18,7 +18,7 @@ const Home = () => {
     <>
       <div className="background-main min-h-screen">
         <Navbar />
-        <div className="md:max-w-[850px]">
+        <div className="md:max-w-[850px] mt-14">
           <div className="mt-10 flex flex-col md:mx-32 mx-5 gap-3">
             <p className="md:text-xl text-lg text-white">Halo, Welcome To</p>
             <h1 className="md:text-5xl text-4xl text-white font-bold tracking-widest">
@@ -37,12 +37,12 @@ const Home = () => {
               kegiatan rutin dalam bentuk kompetisi matematika sebagai bentuk peran aktif Himatika
               FMIPA Unhas dalam mencerdaskan generasi Indonesia.
             </p>
-            <button
+            {/* <button
               className="w-[300px] text-primary uppercase text-base py-1 bg-white rounded-lg font-semibold mt-5"
               onClick={() => navigate("/pendaftaran-peserta")}
             >
               Pendaftaran
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

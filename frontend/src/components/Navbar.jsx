@@ -9,7 +9,7 @@ const Navbar = () => {
         <img src={Logo} alt="" className="w-20 h-20 cursor-pointer" onClick={() => navigate("/")} />
       </div>
       <div className="flex gap-5 uppercase text-primary font-semibold items-center text-sm">
-        <a href="">Pengumuman</a>
+        {/* <a href="">Pengumuman</a> */}
         <details className="dropdown">
           <summary className="m-1 bg-white px-5 py-1 cursor-pointer rounded-md">
             Pendaftaran
