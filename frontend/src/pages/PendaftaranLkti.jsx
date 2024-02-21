@@ -733,9 +733,7 @@ const PendaftaranLkti = () => {
             <div className="flex flex-col">
               <p className="text-primary font-bold mb-1 text-xs">
                 Abstrak{" "}
-                <span className="text-red-600 text-[10px] font-normal">
-                  (jpg, png, jpeg) max 500kb
-                </span>
+                <span className="text-red-600 text-[10px] font-normal">(pdf) max 500kb</span>
               </p>
               <label
                 htmlFor="abstrak"
