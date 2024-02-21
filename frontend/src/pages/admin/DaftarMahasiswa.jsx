@@ -10,6 +10,8 @@ const DaftarMahasiswa = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedId, setSelectedId] = useState();
 
+  const apiUrl = "https://apiregister.mathevent-unhas.com/api";
+
   useEffect(() => {
     const getMahasiswa = async () => {
       const res = await RequestApi("GET", `mahasiswa`, {}, {}, "Mencoba Mengambil Data Instansi");
@@ -58,7 +60,7 @@ const DaftarMahasiswa = () => {
       name: "Foto1",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.foto_1}`}
+          src={`${apiUrl}/${row.foto_1}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -68,7 +70,7 @@ const DaftarMahasiswa = () => {
       name: "Foto2",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.foto_2}`}
+          src={`${apiUrl}/${row.foto_2}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -78,7 +80,7 @@ const DaftarMahasiswa = () => {
       name: "Akitif_1",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.aktif_1}`}
+          src={`${apiUrl}/${row.aktif_1}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -88,7 +90,7 @@ const DaftarMahasiswa = () => {
       name: "Akitif_2",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.aktif_2}`}
+          src={`${apiUrl}/${row.aktif_2}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />

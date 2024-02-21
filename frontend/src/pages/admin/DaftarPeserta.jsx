@@ -5,11 +5,15 @@ import { RequestApi } from "../../helper/RequestApi";
 import ChangeStatus from "../../components/ChangeStatus";
 import EditIcon from "../../../src/assets/edit-icon.svg";
 import ChangeStatusModal from "../../components/ChangeStatusModal";
+import PdfViewer from "../../components/PdfViewer";
 
 const DaftarPeserta = () => {
   const [dataPeserta, setDataPeserta] = useState();
   const [openModal, setOpenModal] = useState(false);
   const [selectedId, setSelectedId] = useState();
+  const [pdfData, setPdfData] = useState();
+
+  const apiUrl = "https://apiregister.mathevent-unhas.com/api";
 
   const openModalHandler = (id) => {
     setOpenModal(true);
@@ -25,7 +29,10 @@ const DaftarPeserta = () => {
       const res = await RequestApi("GET", `siswa`, {}, {}, "Mencoba Mengambil Data Instansi");
 
       setDataPeserta(res.data);
+      const pdfBlob = new Blob(res.data, { type: "application/pdf" });
+      setPdfData(pdfBlob);
       console.log(res.data);
+      console.log(pdfData);
     };
     getSiswa();
   }, []);
@@ -55,7 +62,7 @@ const DaftarPeserta = () => {
       name: "Foto",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.foto}`}
+          src={`${apiUrl}/${row.foto}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -65,7 +72,7 @@ const DaftarPeserta = () => {
       name: "Rapor",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.rapor}`}
+          src={`${apiUrl}/${row.rapor}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -113,6 +120,12 @@ const DaftarPeserta = () => {
       selector: (row) => row.password,
       innerWidth: "200px",
       cell: (row) => <p>{row.password}</p>,
+    },
+    {
+      name: "rapor",
+      selector: (row) => row.password,
+      innerWidth: "200px",
+      cell: (row) => <PdfViewer dataPeserta={row.rapor} />,
     },
     {
       name: "Status",

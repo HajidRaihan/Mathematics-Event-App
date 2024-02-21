@@ -5,6 +5,7 @@ import { RequestApi } from "../../helper/RequestApi";
 
 const DaftarLktmn = () => {
   const [dataPeserta, setDataPeserta] = useState();
+  const apiUrl = "https://apiregister.mathevent-unhas.com/api";
   useEffect(() => {
     const getMahasiswa = async () => {
       const res = await RequestApi("GET", `lkti`, {}, {}, "Mencoba Mengambil Data Instansi");
@@ -43,7 +44,7 @@ const DaftarLktmn = () => {
       name: "Foto1",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.foto_1}`}
+          src={`${apiUrl}/${row.foto_1}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -53,7 +54,7 @@ const DaftarLktmn = () => {
       name: "Foto2",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.foto_2}`}
+          src={`${apiUrl}/${row.foto_2}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -63,7 +64,7 @@ const DaftarLktmn = () => {
       name: "Foto3",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.foto_3}`}
+          src={`${apiUrl}/${row.foto_3}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -73,7 +74,7 @@ const DaftarLktmn = () => {
       name: "Aktif_1",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.aktif_1}`}
+          src={`${apiUrl}/${row.aktif_1}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -83,7 +84,7 @@ const DaftarLktmn = () => {
       name: "Aktif_2",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.aktif_2}`}
+          src={`${apiUrl}/${row.aktif_2}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -93,7 +94,7 @@ const DaftarLktmn = () => {
       name: "Aktif_3",
       selector: (row) => (
         <img
-          src={`http://api.univmart.com/api/${row.aktif_3}`}
+          src={`${apiUrl}/${row.aktif_3}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />

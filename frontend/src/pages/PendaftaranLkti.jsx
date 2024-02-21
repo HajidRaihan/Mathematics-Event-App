@@ -41,6 +41,9 @@ const PendaftaranLkti = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertDesc, setAlertDesc] = useState("Gagal memasukkan data");
+  const [formulir, setFormulir] = useState();
+  const [orisinalitas, setOrisinalitas] = useState();
+  const [abstrak, setAbstrak] = useState();
 
   const genderOptionHandler1 = (e) => setGenderOption1(e.target.value);
   const genderOptionHandler2 = (e) => setGenderOption2(e.target.value);
@@ -99,6 +102,9 @@ const PendaftaranLkti = () => {
       aktif_1: aktif1,
       aktif_2: aktif2,
       aktif_3: aktif3,
+      orisinalitas: orisinalitas,
+      abstrak: abstrak,
+      formulir: formulir,
     };
 
     console.log({ data });
@@ -134,6 +140,9 @@ const PendaftaranLkti = () => {
         setAktifPreview2(null);
         setAktif3(null);
         setAktifPreview3(null);
+        setAbstrak(null);
+        setFormulir(null);
+        setOrisinalitas(null);
       }
       if (res.status === false) {
         showAlertHandler(res.message);
@@ -196,6 +205,21 @@ const PendaftaranLkti = () => {
     }
   };
 
+  const formulirOnChange = (e) => {
+    setFormulir(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
+
+  const orisinalitasOnChange = (e) => {
+    setOrisinalitas(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
+
+  const abstrakOnChange = (e) => {
+    setAbstrak(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
+
   const removeImage1 = () => {
     setFoto1(null);
     setFotoPreview1(null);
@@ -223,6 +247,10 @@ const PendaftaranLkti = () => {
   const removeAktif3 = () => {
     setAktif3(null);
     setAktifPreview3(null);
+  };
+
+  const removeFormulir = () => {
+    setFormulir(null);
   };
 
   useEffect(() => {
@@ -639,20 +667,103 @@ const PendaftaranLkti = () => {
               )}
             </div>
           </div>
-          <p className="text-red-700 mt-3">
-            Upload Abstrak dibawah ini sebelum submit pendaftaran !
-          </p>
-          <button
-            onClick={() =>
-              window.open(
-                "https://docs.google.com/forms/d/1Xh6mtChpEOW2CIYVGOo9dwIIJTOyg-tvLHP8Nwr-dYg/viewform?edit_requested=true"
-              )
-            }
-            target="_blank"
-            className="text-xs font-semibold w-40 p-2 border-none mb-5 bg-primary text-center text-white rounded-xl cursor-pointer"
-          >
-            Upload Abstrak
-          </button>
+
+          {/* Formulir */}
+
+          <div className="flex md:gap-20 gap-5 md:flex-row flex-col mt-3 justify-between">
+            <div className="flex flex-col ">
+              <p className="text-primary font-bold mb-1 text-xs">
+                Formulir{" "}
+                <span className="text-red-600 text-[10px] font-normal">(pdf) max 500kb</span>
+              </p>
+              <label
+                htmlFor="formulir"
+                className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
+              >
+                Unggah
+              </label>
+              <input
+                type="file"
+                id="formulir"
+                className="h-10 rounded-xl bg-white w-40 px-3 hidden"
+                onChange={formulirOnChange}
+              />
+              {formulir && (
+                <div className="w-40 py-2 border border-1 border-black flex justify-center items-center relative mt-3">
+                  <p className="text-xs text-center text-wrap">{formulir?.name}</p>
+                  <p
+                    className="absolute -top-2 -right-2 bg-red-600 rounded-full  w-5 h-5 flex items-center justify-center cursor-pointer"
+                    onClick={removeFormulir}
+                  >
+                    x
+                  </p>
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col">
+              <p className="text-primary font-bold mb-1 text-xs">
+                Orisinalitas{" "}
+                <span className="text-red-600 text-[10px] font-normal">(pdf) max 500kb</span>
+              </p>
+              <label
+                htmlFor="orisinalitas"
+                className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
+              >
+                Unggah
+              </label>
+              <input
+                type="file"
+                id="orisinalitas"
+                className="h-10 rounded-xl bg-white w-40 px-3 hidden"
+                onChange={orisinalitasOnChange}
+              />
+
+              {orisinalitas && (
+                <div className="w-40 py-2 border border-1 border-black flex justify-center items-center relative mt-3 px-1">
+                  <p className="text-xs text-center">{orisinalitas?.name}</p>
+                  <p
+                    className="absolute -top-2 -right-2 bg-red-600 rounded-full  w-5 h-5 flex items-center justify-center cursor-pointer"
+                    onClick={() => setOrisinalitas(null)}
+                  >
+                    x
+                  </p>
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col">
+              <p className="text-primary font-bold mb-1 text-xs">
+                Abstrak{" "}
+                <span className="text-red-600 text-[10px] font-normal">
+                  (jpg, png, jpeg) max 500kb
+                </span>
+              </p>
+              <label
+                htmlFor="abstrak"
+                className="text-xs font-semibold w-40 p-2 border-none bg-primary text-center text-white rounded-xl cursor-pointer"
+              >
+                Unggah
+              </label>
+              <input
+                type="file"
+                id="abstrak"
+                className="h-10 rounded-xl bg-white w-40 px-3 hidden"
+                onChange={abstrakOnChange}
+              />
+
+              {abstrak && (
+                <div className="w-40 py-2 border border-1 border-black flex justify-center items-center relative mt-3">
+                  <p className="text-xs text-center">{abstrak?.name}</p>
+                  <p
+                    className="absolute -top-2 -right-2 bg-red-600 rounded-full  w-5 h-5 flex items-center justify-center cursor-pointer"
+                    onClick={() => setAbstrak(null)}
+                  >
+                    x
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
           <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
           {/* <div>
             <p className="text-primary text-xs font-semibold">

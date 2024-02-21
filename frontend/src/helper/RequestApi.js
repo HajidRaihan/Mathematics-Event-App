@@ -1,7 +1,7 @@
 // Library & Package Import
 import axios from "axios";
 
-const API_BASE_URL = "https://api.univmart.com/api";
+const API_BASE_URL = "https://apiregister.mathevent-unhas.com/api";
 
 const handleErrorResponse = (error, action) => {
   console.error(`Error: saat ${action}`, error);

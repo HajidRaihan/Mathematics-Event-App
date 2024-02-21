@@ -21,6 +21,7 @@ const PendaftaranPeserta = () => {
   const [listSekolah, setListSekolah] = useState();
   const [fotoPreview, setFotoPreview] = useState();
   const [raporPreview, setRaporPreview] = useState();
+  const [regional, setRegional] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -64,6 +65,7 @@ const PendaftaranPeserta = () => {
       email: email,
       foto: foto,
       rapor: rapor,
+      regional: regional,
     };
 
     console.log({ data });
@@ -126,6 +128,11 @@ const PendaftaranPeserta = () => {
   const removeRapor = (e) => {
     setRapor(null);
     setRaporPreview(null);
+  };
+
+  const regionalOnChange = (e) => {
+    console.log(e.target.value);
+    setRegional(e.target.value);
   };
 
   useEffect(() => {
@@ -201,6 +208,56 @@ const PendaftaranPeserta = () => {
               </select>
             </div>
           </div>
+
+          <div className="flex gap-3 w-full">
+            <div className="w-full">
+              <label htmlFor="jenjang" className="text-primary font-bold text-xs">
+                Regional
+              </label>
+              <select
+                name="jenjang"
+                id="jenjang"
+                className="text-xs h-10 rounded-lg border border-black  bg-white w-full shadow-md shadow-secondary px-3"
+                onChange={regionalOnChange}
+                value={regional}
+              >
+                <option disabled selected>
+                  Pilih Regional
+                </option>
+                <option value="Regional 1 : Makassar, Maros, Pangkep, Gowa, dan Takalar">
+                  Regional 1 : Makassar, Maros, Pangkep, Gowa, dan Takalar
+                </option>
+                <option value="Regional 2 : Parepare, Barru, Sidrap, Pinrang">
+                  Regional 2 : Parepare, Barru, Sidrap, Pinrang
+                </option>
+                <option value="Regional 3 : Tana Toraja, Toraja Utara, Enrekang, Palopo, Luwu Timur, Luwu Utara">
+                  Regional 3 : Tana Toraja, Toraja Utara, Enrekang, Palopo, Luwu Timur, Luwu Utara
+                </option>
+                <option value="Regional 4 : Bantaeng, Jeneponto, Bulukumba, Selayar">
+                  Regional 4 : Bantaeng, Jeneponto, Bulukumba, Selayar
+                </option>
+                <option value="Regional 5 : Bone, Wajo, Sinjai, Soppeng">
+                  Regional 5 : Bone, Wajo, Sinjai, Soppeng
+                </option>
+                <option value="Regional 6 : Sulbar, Sulteng, Sultra, Sulut, Gorontalo">
+                  Regional 6 : Sulbar, Sulteng, Sultra, Sulut, Gorontalo
+                </option>
+                <option value="Regional 7 : Diluar Pulau Sulawesi">
+                  Regional 7 : Diluar Pulau Sulawesi
+                </option>
+
+                {/* {listSekolah?.map((data) => (
+                  <>
+                    {data.jenjang !== "mahasiswa" ? (
+                      <option key={data.id} value={data.id}>
+                        {data.instansi}
+                      </option>
+                    ) : null}
+                  </>
+                ))} */}
+              </select>
+            </div>
+          </div>
           <InputForm
             label="Kontak WA"
             onChange={(e) => setKontakWa(e.target.value)}
@@ -245,10 +302,8 @@ const PendaftaranPeserta = () => {
             </div>
             <div className="flex flex-col ">
               <p className="text-primary font-bold mb-1 text-xs">
-                Foto Rapor{" "}
-                <span className="text-red-600 text-[10px] font-normal">
-                  (jpg, png, jpeg) max 500kb
-                </span>
+                Scan Rapor semester terakhir{" "}
+                <span className="text-red-600 text-[10px] font-normal">(pdf) max 500kb</span>
               </p>
               <label
                 htmlFor="rapor"
@@ -262,19 +317,15 @@ const PendaftaranPeserta = () => {
                 className="h-10 rounded-xl bg-white w-40 px-3 hidden"
                 onChange={raporOnChange}
               />
-              {raporPreview && (
-                <div className="w-fit relative mt-5">
-                  <img
-                    src={raporPreview}
-                    alt=""
-                    className="h-full w-28 object-cover object-center rounded-lg z-20 "
-                  />
-                  <div
+              {rapor && (
+                <div className="w-40 py-2 border border-1 border-black flex justify-center items-center relative mt-3">
+                  <p className="text-xs text-center text-wrap">{rapor?.name}</p>
+                  <p
                     className="absolute -top-2 -right-2 bg-red-600 rounded-full  w-5 h-5 flex items-center justify-center cursor-pointer"
                     onClick={removeRapor}
                   >
-                    <p className=" text-white">x</p>
-                  </div>
+                    x
+                  </p>
                 </div>
               )}
             </div>
