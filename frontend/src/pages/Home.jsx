@@ -1,18 +1,6 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import axios from "axios";
-import Logo from "../assets/logo.png";
 
 const Home = () => {
-  useEffect(() => {
-    const getInstansi = async () => {
-      await axios.get("http://127.0.0.1:8000/api/instansi/1").then((result) => {
-        console.log(result.data.data);
-      });
-    };
-    getInstansi();
-  }, []);
   return (
     <>
       <div className="background-main min-h-screen">
