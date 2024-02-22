@@ -10,6 +10,7 @@ const Notes = () => {
       <div className="p-5 rounded-xl bg-primary">
         <p className="font-medium text-xs text-white">Contact Us</p>
         <p className="font-medium text-xs text-white">SMA/Sederajat : 0882-0205-12061 (Nila)</p>
+        <p className="font-medium text-xs text-white">Mahasiswa : 0856-9671-5602 (Eka)</p>
         <p className="font-medium text-xs text-white">Mahasiswa KTMN: 0813-3799-3787 (Rifqi)</p>
       </div>
     </div>
