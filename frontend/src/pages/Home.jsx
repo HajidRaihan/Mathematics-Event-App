@@ -21,7 +21,7 @@ const Home = () => {
           <div className="mt-10 flex flex-col md:mx-32 mx-5 gap-3">
             <p className="md:text-xl text-lg text-white">Halo, Welcome To</p>
             <h1 className="md:text-5xl text-4xl text-white font-bold tracking-widest">
-              MATHEMATICS EVENT
+              MATHEMATICS EVENT aksjdhakjsdhak
             </h1>
             <h1 className="md:text-5xl text-4xl text-primary font-bold tracking-widest">XXIV</h1>
             <p className="text-white md:text-base text-xs md:font-semibold font-medium md:tracking-widest tracking-wider">
