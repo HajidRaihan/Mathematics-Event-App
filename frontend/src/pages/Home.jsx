@@ -13,7 +13,6 @@ const Home = () => {
     };
     getInstansi();
   }, []);
-  const navigate = useNavigate();
   return (
     <>
       <div className="background-main min-h-screen">
