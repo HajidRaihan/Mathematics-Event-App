@@ -13,7 +13,9 @@ const DaftarPeserta = () => {
   const [selectedId, setSelectedId] = useState();
   const [pdfData, setPdfData] = useState();
 
-  const apiUrl = "https://apiregister.mathevent-unhas.com/api";
+  const apiUrl = import.meta.env.VITE_BASE_URL;
+
+  console.log(apiUrl);
 
   const openModalHandler = (id) => {
     setOpenModal(true);

@@ -5,7 +5,7 @@ import { RequestApi } from "../../helper/RequestApi";
 
 const DaftarLktmn = () => {
   const [dataPeserta, setDataPeserta] = useState();
-  const apiUrl = "https://apiregister.mathevent-unhas.com/api";
+  const apiUrl = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
     const getMahasiswa = async () => {
       const res = await RequestApi("GET", `lkti`, {}, {}, "Mencoba Mengambil Data Instansi");

@@ -188,7 +188,7 @@ const PendaftaranMahasiswa = () => {
       <Navbar />
       <div className="mb-10 flex flex-col items-center">
         <div className="flex flex-col gap-3 md:w-[500px] mb-32">
-          <h1 className="text-3xl font-bold text-primary">Pendaftaran Mahasiswa</h1>
+          <h1 className="md:text-3xl text-2xl font-bold text-primary">Pendaftaran Mahasiswa</h1>
           <div className="w-full h-0.5 bg-primary mb-5" />
           <div className="flex md:flex-row flex-col gap-5">
             <InputForm
@@ -280,7 +280,7 @@ const PendaftaranMahasiswa = () => {
           </div>
 
           <div className="flex gap-3 w-full">
-            <div className="w-full">
+            <div className="md:w-full w-[300px]">
               <label htmlFor="instansi" className="text-primary text-xs font-bold">
                 Instansi
               </label>

@@ -400,7 +400,7 @@ const PendaftaranLkti = () => {
           </div>
 
           <div className="flex gap-3 w-full">
-            <div className="w-full">
+            <div className="md:w-full w-[300px]">
               <label htmlFor="instansi" className="text-primary text-xs font-bold">
                 Instansi
               </label>

@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 
 const Home = () => {
+  console.log(import.meta.env.VITE_BASE_URL); // "123
   return (
     <>
       <div className="background-main min-h-screen">
@@ -43,36 +44,37 @@ const Home = () => {
             <li> Mahasiswa Se-Indonesia</li>
           </ol>
         </div>
-        <h3 className="font-bold">Tahapan Pelaksanaan Olimpiade Mathematics Event XXIV</h3>
+        <h3 className="font-bold">Tahapan Pelaksanaan Olimpiade</h3>
         <div>
           <ol className="list-decimal ml-5">
-            <li className="font-medium">
-              Webinar Nasional Matematika Waktu : Sabtu, 24 Februari 2024
-            </li>
-            <ul className="list-disc ml-5">
-              <li>Tempt : Zoom Cloud Meeting</li>
-            </ul>
             <li className="font-medium">Babak Penyisihan</li>
             <ul className="list-disc ml-5">
-              <li>Waktu : Sabtu, 24 Februari 2024</li>
+              <li>Waktu: Minggu, 30 Maret 2024</li>
               <li>Tempat : Zoom Cloud Meeting</li>
             </ul>
-            <li className="font-medium">Babak semifinal, final, Grandfinal </li>
+            <li className="font-medium">Babak semifinal, final, Grandfinal</li>
             <ul className="list-disc ml-5">
-              <li>Waktu : Sabtu – Minggu, 9 – 10 Maret 2024 </li>
-              <li>Tempat : Baruga A.Pettarani dan Science Building Universitas Hasanuddin</li>
+              <li>Waktu : Jum’at – Minggu, 19 – 21 April2024</li>
+              <li>
+                Tempat : Baruga A.P. Pettarani Unhas, Science Building FMIPA Unhas, dan Aula Prof.
+                Mattuada FIB Unhas
+              </li>
             </ul>
           </ol>
         </div>
-        <h3 className="font-bold">Tahapan Pelaksanaan Olimpiade Mathematics Event XXIV</h3>
+        <h3 className="font-bold">Tahapan Pelaksanaan Karya Tulis Matematika Nasional</h3>
         <ol className="list-decimal ml-5">
           <li className="font-medium">
-            Pengumpulan Abstrak: Online by google form, 23 Januari – 4 Februari 2024
+            Pengumpulan Abstrak: Online by google form and google drive, 22 Februari – 10 Maret 2024
           </li>
           <li className="font-medium">
-            Pengumpulan Makalah Lengkap: Online by google form and google drive, 12-21 Februari 2024
+            Pengumpulan full paper: Online by google form and google drive, 14 – 28 Maret 2024
           </li>
-          <li className="font-medium">Presentasi: Online by cloud zoom meeting, 2 Maret 2024</li>
+          <li className="font-medium">Presentasi: Online by cloud zoom meeting, 07 April 2024</li>
+
+          <li className="font-medium">
+            Seminar Nasional Matematika : Baruga A.P. Pettarani Unhas, 19 April 2024
+          </li>
         </ol>
       </div>
 
@@ -128,6 +130,66 @@ const Home = () => {
             </ul>
           </div>
         </div>
+      </div>
+
+      <div className="md:mx-32 mx-5 my-32 text-sm text-primary flex flex-col gap-3">
+        <h3 className="font-bold">Olimpiade Mahasiswa (tim beranggotakan 2 org)</h3>
+        <div>
+          <ol className="list-decimal ml-5">
+            <li className="font-medium">Penyisihan ( Seleksi regional)</li>
+            <p>
+              Babak penyisihan dilakukan secara online dalam bentuk soal pilihan ganda dan essai. 15
+              tim dengan urutan teraatas aakan lolos ke babak semifinal di Makassar
+            </p>
+            <li className="font-medium">Semifinal</li>
+            <p>
+              Tim akan mengerjakan soal secara individu, masing-masing nilai individu tersebut akan
+              diakumulasikan menjadi nilai tim. Soal berbentuk isian dan essay. 5 tim dengan nilai
+              teratas akan lolos ke babak final
+            </p>
+            <li className="font-medium">Final</li>
+            <p>
+              Mystery Room: Tim akan masuk room lalu mengerjakan soal dalam bentuk matriks, terdapat
+              5 room dengan materi yang berbeda-beda. Soal berbentuk tulisan isian. 3 tim dengan
+              nilai teratas akan lolos ke babak grandfinal
+            </p>
+            <li className="font-medium">Grandfinal</li>
+            <p>
+              Mystery Room: Tim akan masuk room lalu mengerjakan soal dalam bentuk matriks, terdapat
+              5 room dengan materi yang berbeda-beda. Soal berbentuk tulisan isian. 3 tim dengan
+              nilai teratas akan lolos ke babak grandfinal
+            </p>
+          </ol>
+        </div>
+        <h3 className="font-bold">
+          Mahasiswa Karya Tulis Matematika Nassional (tim beranggotakan 2-3 org)
+        </h3>
+
+        <ol className="list-decimal ml-5">
+          <li className="font-medium">Pengumpulan Abstrak</li>
+          <p>
+            Pengumpulan abstrak dilakukan secara online sesuai dengan tema dan subtema yang telah
+            ditentukan. 25 tim dengan nilai teratas berdasarkan penilaian juri akan lolos ke tahap
+            selanjutnya
+          </p>
+          <li className="font-medium">Pengumpulan makalah lengkap</li>
+          <p>
+            Pengumpulan makalah lengkap dilakukan secara online dengan pedoman penulisan karya tulis
+            yang benar. 10 tim dengan nilai teratas berdasarkan penilaian juri akan lolos ke tahap
+            selanjutnya
+          </p>
+          <li className="font-medium">Presentasi</li>
+          <p>
+            Presentasi dilakukan secara online oleh 10 tim yang telah lolos dari babak sebelumnya. 3
+            tim dengan nilai teratas akan lolos ke babak Grand Final.
+          </p>{" "}
+          <li className="font-medium">Seminar Nasional Matematika</li>
+          <p>
+            Tahap ini merupakan tahap akhir (Grand Final) dilakukan secara luring, di mana para
+            peserta akan mempresentasikan karya mereka pada Seminar Nasional Matematika untuk
+            menentukan juara I, II, dan III.
+          </p>
+        </ol>
       </div>
     </>
   );

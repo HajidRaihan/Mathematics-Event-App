@@ -10,7 +10,7 @@ const DaftarMahasiswa = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedId, setSelectedId] = useState();
 
-  const apiUrl = "https://apiregister.mathevent-unhas.com/api";
+  const apiUrl = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const getMahasiswa = async () => {

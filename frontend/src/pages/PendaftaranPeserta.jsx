@@ -182,7 +182,7 @@ const PendaftaranPeserta = () => {
             </div>
           </div>
           <div className="flex gap-3 w-full">
-            <div className="w-full">
+            <div className="md:w-full w-[300px]">
               <label htmlFor="jenjang" className="text-primary font-bold text-xs">
                 Sekolah
               </label>
@@ -210,7 +210,7 @@ const PendaftaranPeserta = () => {
           </div>
 
           <div className="flex gap-3 w-full">
-            <div className="w-full">
+            <div className="md:w-full w-[300px]">
               <label htmlFor="jenjang" className="text-primary font-bold text-xs">
                 Regional
               </label>
