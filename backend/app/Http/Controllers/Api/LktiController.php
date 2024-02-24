@@ -202,7 +202,7 @@ class LktiController extends Controller
         }
 
         $rules =[
-            'status'=>'required',
+            'status'=>'nullable',
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -216,7 +216,7 @@ class LktiController extends Controller
         }
 
         $data->update([
-            'status'=>$request->input('status'),
+            'status'=>$request->input('status') ?? $data->status,
         ]);
         return response()->json([
             'status'=>true,

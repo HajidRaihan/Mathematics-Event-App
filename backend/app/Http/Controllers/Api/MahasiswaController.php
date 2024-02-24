@@ -166,9 +166,9 @@ class MahasiswaController extends Controller
         }
 
         $rules =[
-            'status'=>'required',
-            'username'=>'required',
-            'password'=>'required',
+            'status'=>'nullable',
+            'username'=>'nullable',
+            'password'=>'nullable',
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -182,9 +182,9 @@ class MahasiswaController extends Controller
         }
 
         $data->update([
-            'status'=>$request->input('status'),
-            'username'=>$request->input('username'),
-            'password'=>$request->input('password')
+            'status'=>$request->input('status') ?? $data->status,
+            'username'=>$request->input('username') ?? $data->username,
+            'password'=>$request->input('password') ?? $data->password
         ]);
         return response()->json([
             'status'=>true,
