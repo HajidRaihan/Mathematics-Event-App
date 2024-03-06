@@ -175,7 +175,12 @@ const DaftarMahasiswa = () => {
           />
 
           {openModal && (
-            <ChangeStatusModal close={closeModalHandler} id={selectedId} url="mahasiswa" />
+            <ChangeStatusModal
+              close={closeModalHandler}
+              id={selectedId}
+              url="mahasiswa"
+              username={row.nim_1}
+            />
           )}
         </div>
       ),

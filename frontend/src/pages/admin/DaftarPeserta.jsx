@@ -26,6 +26,20 @@ const DaftarPeserta = () => {
     setOpenModal(false);
   };
 
+  function generateRandomString(length) {
+    let result = "";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  // Example usage:
+  const randomString = generateRandomString(8); // Generates a random string of length 10
+  console.log(randomString);
+
   useEffect(() => {
     const getSiswa = async () => {
       const res = await RequestApi("GET", `siswa`, {}, {}, "Mencoba Mengambil Data Instansi");
@@ -34,7 +48,7 @@ const DaftarPeserta = () => {
       const pdfBlob = new Blob(res.data, { type: "application/pdf" });
       setPdfData(pdfBlob);
       console.log(res.data);
-      console.log(pdfData);
+      console.log("lasdalkjs", pdfData);
     };
     getSiswa();
   }, []);
@@ -61,20 +75,23 @@ const DaftarPeserta = () => {
       sortable: true,
     },
     {
+      name: "rapor",
+      selector: (row) => row.password,
+      innerWidth: "200px",
+      cell: (row) => (
+        <>
+          <a href={`${apiUrl}/${row.rapor}`} target="_blank" className="text-blue-500">
+            download pdf
+          </a>
+          {/* <PdfViewer dataPeserta={row.rapor} /> */}
+        </>
+      ),
+    },
+    {
       name: "Foto",
       selector: (row) => (
         <img
           src={`${apiUrl}/${row.foto}`}
-          alt="foto peserta"
-          className="w-20 h-20 rounded-full my-3 object-cover object-center"
-        />
-      ),
-    },
-    {
-      name: "Rapor",
-      selector: (row) => (
-        <img
-          src={`${apiUrl}/${row.rapor}`}
           alt="foto peserta"
           className="w-20 h-20 rounded-full my-3 object-cover object-center"
         />
@@ -123,12 +140,7 @@ const DaftarPeserta = () => {
       innerWidth: "200px",
       cell: (row) => <p>{row.password}</p>,
     },
-    {
-      name: "rapor",
-      selector: (row) => row.password,
-      innerWidth: "200px",
-      cell: (row) => <PdfViewer dataPeserta={row.rapor} />,
-    },
+
     {
       name: "Status",
       selector: (row) => row.status,
@@ -143,7 +155,14 @@ const DaftarPeserta = () => {
           />
           {/* <ChangeStatus /> */}
 
-          {openModal && <ChangeStatusModal close={closeModalHandler} id={selectedId} url="siswa" />}
+          {openModal && (
+            <ChangeStatusModal
+              close={closeModalHandler}
+              username={row.nisn}
+              id={selectedId}
+              url="siswa"
+            />
+          )}
         </div>
       ),
       sortable: true,

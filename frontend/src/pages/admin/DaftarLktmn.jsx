@@ -16,29 +16,47 @@ const DaftarLktmn = () => {
     getMahasiswa();
   }, []);
 
-  const conditionalRowStyles = [
-    {
-      when: (row) => row.status === "belum lunas",
-      style: {
-        backgroundColor: "red",
-        color: "white",
-        "&:hover": {
-          cursor: "pointer",
-        },
-      },
-    },
-    // You can also pass a callback to style for additional customization
-    // {
-    //   when: (row) => row.calories < 400,
-    //   style: (row) => ({ backgroundColor: row.isSpecial ? "pink" : "inerit" }),
-    // },
-  ];
+  // const conditionalRowStyles = [
+  //   {
+  //     when: (row) => row.status === "belum lunas",
+  //     style: {
+  //       backgroundColor: "red",
+  //       color: "white",
+  //       "&:hover": {
+  //         cursor: "pointer",
+  //       },
+  //     },
+  //   },
+  //   // You can also pass a callback to style for additional customization
+  //   // {
+  //   //   when: (row) => row.calories < 400,
+  //   //   style: (row) => ({ backgroundColor: row.isSpecial ? "pink" : "inerit" }),
+  //   // },
+  // ];
   const columns = [
     {
       name: "id",
       selector: (row) => row.id,
       cell: (row) => <p>{row.id}</p>,
       sortable: true,
+    },
+    {
+      name: "abstrak",
+      selector: (row) => row.id,
+      cell: (row) => (
+        <a href={`${apiUrl}/${row.abstrak}`} target="_blank" className="text-blue-500">
+          download abstrak
+        </a>
+      ),
+    },
+    {
+      name: "orisinalitas",
+      selector: (row) => row.id,
+      cell: (row) => (
+        <a href={`${apiUrl}/${row.orisinalitas}`} target="_blank" className="text-blue-500">
+          download orisinalitas
+        </a>
+      ),
     },
     {
       name: "Foto1",
@@ -201,7 +219,7 @@ const DaftarLktmn = () => {
           data={dataPeserta}
           title={`Peserta Mahasiswa | ${dataPeserta?.length}`}
           pagination
-          conditionalRowStyles={conditionalRowStyles}
+          // conditionalRowStyles={conditionalRowStyles}
           scrollX
         />
       </div>
