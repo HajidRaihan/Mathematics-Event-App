@@ -21,7 +21,9 @@ const PendaftaranPeserta = () => {
   const [listSekolah, setListSekolah] = useState();
   const [fotoPreview, setFotoPreview] = useState();
   const [raporPreview, setRaporPreview] = useState();
-  const [regional, setRegional] = useState("");
+  const [regional, setRegional] = useState(
+    "Regional 1 : Makassar, Maros, Pangkep, Gowa, dan Takalar"
+  );
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -70,32 +72,32 @@ const PendaftaranPeserta = () => {
 
     console.log({ data });
 
-    try {
-      const res = await RequestApi("POST", `siswa`, data, {}, "Mencoba Menyimpan Data Peserta");
-      if (res.status === true) {
-        openHandler();
-        setIsLoading(false);
-        setNama("");
-        setNisn("");
-        setKontakWa("");
-        setEmail("");
-        setFoto(null);
-        setRapor(null);
-        setFotoPreview("");
-        setRaporPreview("");
-      }
-      if (res.status === false) {
-        showAlertHandler(res.message);
-      }
-      setIsLoading(false);
+    // try {
+    //   const res = await RequestApi("POST", `siswa`, data, {}, "Mencoba Menyimpan Data Peserta");
+    //   if (res.status === true) {
+    //     openHandler();
+    //     setIsLoading(false);
+    //     setNama("");
+    //     setNisn("");
+    //     setKontakWa("");
+    //     setEmail("");
+    //     setFoto(null);
+    //     setRapor(null);
+    //     setFotoPreview("");
+    //     setRaporPreview("");
+    //   }
+    //   if (res.status === false) {
+    //     showAlertHandler(res.message);
+    //   }
+    //   setIsLoading(false);
 
-      console.log("data berhasil di simpan", res);
-    } catch (error) {
-      setIsLoading(false);
-      console.log(error);
-      showAlertHandler(error.response.request.response);
-      // throw error;
-    }
+    //   console.log("data berhasil di simpan", res);
+    // } catch (error) {
+    //   setIsLoading(false);
+    //   console.log(error);
+    //   showAlertHandler(error.response.request.response);
+    //   // throw error;
+    // }
   };
 
   const genderOptionHandler = (e) => setGenderOption(e.target.value);

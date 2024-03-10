@@ -158,7 +158,7 @@ const DaftarPeserta = () => {
           {openModal && (
             <ChangeStatusModal
               close={closeModalHandler}
-              username={row.nisn}
+              // username={row.nisn}
               id={selectedId}
               url="siswa"
             />
