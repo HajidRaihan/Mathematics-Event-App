@@ -477,7 +477,7 @@ const PendaftaranMahasiswa = () => {
           <ButtonSubmit submitHandler={pendaftaranHandler} isLoading={isLoading} />
           <div>
             <p className="text-primary text-xs font-semibold">
-              Biaya Pendaftaran Rp. 100.000,-/Tim
+              Biaya Pendaftaran Rp. 120.000,-/Tim
             </p>
             <p className="text-primary text-xs font-semibold">Nomor Rekening Pembayaran:</p>
             <p className="text-primary text-xs font-semibold">
