@@ -1,82 +1,73 @@
-import React, { useEffect, useState } from "react";
-// import { Document, Page, pdfjs } from "@react-pdf/renderer";
-import { Document, Page } from "@react-pdf/renderer";
-import axios from "axios";
+// // import React, { useState } from "react";
+// // import Pdf from "../Pdf.pdf";
+// // import { Viewer, Worker } from "@react-pdf-viewer/core";
+// // import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
+// // import "@react-pdf-viewer/core/lib/styles/index.css";
+// // import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// // function PdfViewer() {
+// //   const [numPages, setNumPages] = useState(null);
+// //   const [pageNumber, setPageNumber] = useState(1);
 
-const PdfViewer = ({ dataPeserta }) => {
-  console.log({ dataPeserta });
-  const [pdfUrl, setPdfUrl] = useState();
+// //   function onDocumentLoadSuccess({ numPages }) {
+// //     setNumPages(numPages);
+// //   }
 
-  //   useEffect(() => {
-  //     const blob = new Blob([dataPeserta], { type: "application/pdf" });
-  //     const url = URL.createObjectURL(blob);
-  //     console.log("ini url", { url });
-  //     setPdfUrl(url);
-  //   }, []);
+// //   return (
+// //     <div>
+// //       <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
+// //         <Viewer
+// //           fileUrl={Pdf}
+// //           plugins={[defaultLayoutPlugin]}
+// //           initialPage={pageNumber}
+// //           onPageChange={({ pageNumber }) => setPageNumber(pageNumber)}
+// //           // Optional: Uncomment the line below to hide the toolbar
+// //           // renderToolbar={() => null}
+// //         />
+// //       </Worker>
+// //       {numPages && (
+// //         <p>
+// //           Page {pageNumber} of {numPages}
+// //         </p>
+// //       )}
+// //     </div>
+// //   );
+// // }
 
-  const apiUrl = import.meta.env.VITE_BASE_URL;
+// import React from "react";
+// import { PDFViewer, Document, Page, Text, View, StyleSheet, ReactPDF } from "@react-pdf/renderer";
 
-  const downloadPdf = () => {
-    if (dataPeserta) {
-      const blob = new Blob([dataPeserta], { type: "application/pdf" });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      const namaFile = dataPeserta.replace("uploads/", "");
-      a.download = `${namaFile}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-    } else {
-      console.error("PDF data is not available");
-    }
-  };
+// // Buat stylesheet untuk PDF
+// const styles = StyleSheet.create({
+//   page: {
+//     flexDirection: "row",
+//     backgroundColor: "#E4E4E4",
+//   },
+//   section: {
+//     margin: 10,
+//     padding: 10,
+//     flexGrow: 1,
+//   },
+// });
 
-  const handleDownload = async () => {
-    try {
-      // Kirim permintaan ke API untuk mendapatkan PDF
-      const response = await axios.get(`${apiUrl}/${dataPeserta}`, {
-        responseType: "blob", // Set responseType ke 'blob' untuk menerima respons sebagai blob (binary data)
-      });
+// const MyDocument = () => (
+//   <Document>
+//     <Page size="A4" style={styles.page}>
+//       <View style={styles.section}>
+//         <Text>Section #1</Text>
+//       </View>
+//       <View style={styles.section}>
+//         <Text>Section #2</Text>
+//       </View>
+//     </Page>
+//   </Document>
+// );
 
-      // Buat objek URL dari blob
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-
-      // Buat link untuk mengunduh file
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "example.pdf");
-      document.body.appendChild(link);
-
-      // Klik link untuk memulai unduhan
-      link.click();
-    } catch (error) {
-      console.error("Error downloading PDF:", error);
-    }
-  };
-
-  return (
-    <div>
-      <div>
-        {dataPeserta && (
-          <>
-            {/* <div style={{ width: "100%", height: "800px" }}>
-              <Document
-                file={{ data: dataPeserta }}
-                onLoadError={(error) => console.error("Error loading PDF:", error)}
-              >
-                <Page pageNumber={1} width={600} />
-                <p>{dataPeserta}</p>
-              </Document>
-            </div> */}
-            <button onClick={handleDownload}>Download PDF</button>
-          </>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default PdfViewer;
+// // Komponen React yang menampilkan PDF
+// const PdfViewer = () => (
+//   // <PDFViewer style={{ width: "100%", height: "100vh" }}>
+//   //   <MyDocument />
+//   // </PDFViewer>
+// );
+// // ReactPDF.render(<MyDocument />, `"../Pdf.pdf"`);
+// export default PdfViewer;

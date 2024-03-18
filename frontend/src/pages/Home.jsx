@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const Home = () => {
@@ -31,6 +32,17 @@ const Home = () => {
             >
               Pendaftaran
             </button> */}
+
+            <Link
+              to={
+                "https://drive.google.com/drive/folders/1hCSbSk_rHbfTcwA_hMF4HJZ2dYzgqIId?usp=sharing"
+              }
+              target="_blank"
+              className="text-center w-[400px] text-primary uppercase text-base py-1 bg-white rounded-lg font-semibold mt-5"
+              // onClick={() => navigate("/pendaftaran-peserta")}
+            >
+              Pengumuman Penilaian Abstrak LKTMN
+            </Link>
           </div>
         </div>
       </div>
@@ -198,22 +210,24 @@ const Home = () => {
           <div>
             <ul className="list-decimal  ml-5">
               <li className="font-medium">
-                  Pendaftaran online dapat dilakukan dengan cara mengisi formulir pendaftaran di situs web Mathematics Event, 
-                  terdapat dua gelombang untuk melakukan pendaftaran online yaitu:<br>
-                  </br>
-                  Gelombang 1 : 22 Februari – 10 Maret  2024<br>
-                  </br>
-                  Gelombang 2 : 11 – 28 Maret 2024
-                  </li>
-                  <br></br>
+                Pendaftaran online dapat dilakukan dengan cara mengisi formulir pendaftaran di situs
+                web Mathematics Event, terdapat dua gelombang untuk melakukan pendaftaran online
+                yaitu:<br></br>
+                Gelombang 1 : 22 Februari – 10 Maret 2024<br></br>
+                Gelombang 2 : 11 – 28 Maret 2024
+              </li>
+              <br></br>
               <li className="font-medium">
-                  Pendaftaran online untuk peserta Mahasiswa dalam ajang KTMN dapat dilakukan dengan cara mengisi formulir 
-                  pendaftaran di situs web Mathematics Event untuk melakukan pendaftaran online yaitu: <a href="//bit.ly/4bEYfkX" style={{ color: 'rgb(173, 216, 230)' }}>Form KTMN</a><br>
-                  </br>
-                  Pengumpulan abstrak : 22 Februari – 10 Maret 2024<br>
-                  </br>
-                  Pengumpulan full paper : 14 – 28 Maret 2024
-                  </li>
+                Pendaftaran online untuk peserta Mahasiswa dalam ajang KTMN dapat dilakukan dengan
+                cara mengisi formulir pendaftaran di situs web Mathematics Event untuk melakukan
+                pendaftaran online yaitu:{" "}
+                <a href="//bit.ly/4bEYfkX" style={{ color: "rgb(173, 216, 230)" }}>
+                  Form KTMN
+                </a>
+                <br></br>
+                Pengumpulan abstrak : 22 Februari – 10 Maret 2024<br></br>
+                Pengumpulan full paper : 14 – 28 Maret 2024
+              </li>
             </ul>
           </div>
         </div>
@@ -223,38 +237,54 @@ const Home = () => {
         <h3 className="font-bold">TATA CARA MATHEMATICS EVENT XXIV</h3>
         <div>
           <ol className="list-decimal ml-5">
-            <li>Buka situs <a href="https://register.mathevent-unhas.com/">https://register.mathevent-unhas.com/</a></li><br>
-            </br>
-            <li> Pilih pendaftaran instansi, kemudian isi formulir dan submit. Setelah sekolah atau universitas terdaftar, 
-              kamu sudah dapat melakukan pendaftaran sebagai peserta.</li><br>
-              </br>
-            <li>Pilih pendaftaram peserta, kemudian isi formulir dan submit.</li><br>
-            </br>
-            <li>Akun berhasil dibuat namun kamu belum terdaftar sebagai peserta resmi.</li><br>
-            </br>
-            <li>Transfer biaya pendaftaran melalui No. Rek 1554-01-001512-53-3 a.n. Mathematics Event dan kirimkan bukti pembayaran 
-              ke contact person panitia untuk mengaktifkan akun</li><br>
-              </br>
-            <li>Pilih Log in</li><br>
-            </br>
-            <li>Masukkan username dan password yang kamu buat sebelumnya. Jika status berubah menjadi aktif, 
-              maka kamu telah terdaaftar sebagai peserta Mathematics Event XXIV.</li>
-          </ol><br>
-          </br>
+            <li>
+              Buka situs{" "}
+              <a href="https://register.mathevent-unhas.com/">
+                https://register.mathevent-unhas.com/
+              </a>
+            </li>
+            <br></br>
+            <li>
+              {" "}
+              Pilih pendaftaran instansi, kemudian isi formulir dan submit. Setelah sekolah atau
+              universitas terdaftar, kamu sudah dapat melakukan pendaftaran sebagai peserta.
+            </li>
+            <br></br>
+            <li>Pilih pendaftaram peserta, kemudian isi formulir dan submit.</li>
+            <br></br>
+            <li>Akun berhasil dibuat namun kamu belum terdaftar sebagai peserta resmi.</li>
+            <br></br>
+            <li>
+              Transfer biaya pendaftaran melalui No. Rek 1554-01-001512-53-3 a.n. Mathematics Event
+              dan kirimkan bukti pembayaran ke contact person panitia untuk mengaktifkan akun
+            </li>
+            <br></br>
+            <li>Pilih Log in</li>
+            <br></br>
+            <li>
+              Masukkan username dan password yang kamu buat sebelumnya. Jika status berubah menjadi
+              aktif, maka kamu telah terdaaftar sebagai peserta Mathematics Event XXIV.
+            </li>
+          </ol>
+          <br></br>
           <h3 className="font-bold">Biaya Kontribusi Mathematics Event XXIV</h3>
-            <p className="font-medium">SMA/Sederajat </p>
-            <p className="font-medium">Gelombang 1 : Rp. 30.000,-/Orang<br></br>
-               Gelombang 2 : Rp. 45.000,-/Orang
-            </p><br></br>
-            <p className="font-medium">Mahasiswa Olimpiade</p>
-            <p className="font-medium">Gelombang 1 : Rp. 100.000,-/Tim<br></br>
+          <p className="font-medium">SMA/Sederajat </p>
+          <p className="font-medium">
+            Gelombang 1 : Rp. 30.000,-/Orang<br></br>
+            Gelombang 2 : Rp. 45.000,-/Orang
+          </p>
+          <br></br>
+          <p className="font-medium">Mahasiswa Olimpiade</p>
+          <p className="font-medium">
+            Gelombang 1 : Rp. 100.000,-/Tim<br></br>
             Gelombang 2 : Rp. 120.000,-/Tim
-            </p><br></br>
-            <p className="font-medium">Mahasiswa KTMN</p>
-            <ol className="list-decimal ml-5">
+          </p>
+          <br></br>
+          <p className="font-medium">Mahasiswa KTMN</p>
+          <ol className="list-decimal ml-5">
             <li>Pendaftaran abstrak : Gratis</li>
             <li>Pengumpulan Full Paper : Rp.80.000/Tim</li>
-            </ol>
+          </ol>
         </div>
       </div>
 
@@ -262,7 +292,7 @@ const Home = () => {
         <div className="md:mx-32 mx-5  max-w-[600px] py-32 text-sm text-white flex flex-col gap-3">
           <h3 className="font-bold">HADIAH JUARA MATHEMATICS EVENT XXIV</h3>
           <div>
-          <p className="font-bold">SMA</p>
+            <p className="font-bold">SMA</p>
             <p className="font-medium">Juara 1 :</p>
             <ul className="list-decimal  ml-5">
               <li className="font-medium">Piala Bergilir Gubernur Sulawesi Selatan</li>
@@ -270,7 +300,8 @@ const Home = () => {
               <li className="font-medium">Piagam</li>
               <li className="font-medium">Medali</li>
               <li className="font-medium">Uang Tunai</li>
-              </ul><br></br>
+            </ul>
+            <br></br>
 
             <p className="font-medium">Juara 2 :</p>
             <ul className="list-decimal ml-5">
@@ -278,25 +309,30 @@ const Home = () => {
               <li className="font-medium">Piagam</li>
               <li className="font-medium">Medali</li>
               <li className="font-medium">Uang Tunai</li>
-              </ul><br></br>
+            </ul>
+            <br></br>
 
-              <p className="font-medium">Juara 3 :</p>
+            <p className="font-medium">Juara 3 :</p>
             <ul className="list-decimal ml-5">
               <li className="font-medium">Piala Tetap</li>
               <li className="font-medium">Piagam</li>
               <li className="font-medium">Medali</li>
               <li className="font-medium">Uang Tunai</li>
-              </ul><br></br>
+            </ul>
+            <br></br>
 
-              <p className="font-bold">Mahasiswa Olimpiade</p>
+            <p className="font-bold">Mahasiswa Olimpiade</p>
             <p className="font-medium">Juara 1 :</p>
             <ul className="list-decimal  ml-5">
-              <li className="font-medium">Piala Bergilir Menteri Pendidikan Kebudayaan, Riset, dan Teknologi </li>
+              <li className="font-medium">
+                Piala Bergilir Menteri Pendidikan Kebudayaan, Riset, dan Teknologi{" "}
+              </li>
               <li className="font-medium">Piala Tetap</li>
               <li className="font-medium">Piagam</li>
               <li className="font-medium">Medali</li>
               <li className="font-medium">Uang Tunai</li>
-              </ul><br></br>
+            </ul>
+            <br></br>
 
             <p className="font-medium">Juara 2 :</p>
             <ul className="list-decimal ml-5">
@@ -304,24 +340,27 @@ const Home = () => {
               <li className="font-medium">Piagam</li>
               <li className="font-medium">Medali</li>
               <li className="font-medium">Uang Tunai</li>
-              </ul><br></br>
+            </ul>
+            <br></br>
 
-              <p className="font-medium">Juara 3 :</p>
+            <p className="font-medium">Juara 3 :</p>
             <ul className="list-decimal ml-5">
               <li className="font-medium">Piala Tetap</li>
               <li className="font-medium">Piagam</li>
               <li className="font-medium">Medali</li>
               <li className="font-medium">Uang Tunai</li>
-              </ul><br></br>
+            </ul>
+            <br></br>
 
-              <p className="font-bold">Mahasiswa KTMN</p>
+            <p className="font-bold">Mahasiswa KTMN</p>
             <p className="font-medium">Juara 1 :</p>
             <ul className="list-decimal  ml-5">
               <li className="font-medium">Piala Tetap</li>
               <li className="font-medium">Piagam</li>
               <li className="font-medium">Medali</li>
               <li className="font-medium">Uang Tunai</li>
-              </ul><br></br>
+            </ul>
+            <br></br>
 
             <p className="font-medium">Juara 2 :</p>
             <ul className="list-decimal ml-5">
@@ -329,30 +368,27 @@ const Home = () => {
               <li className="font-medium">Piagam</li>
               <li className="font-medium">Medali</li>
               <li className="font-medium">Uang Tunai</li>
-              </ul><br></br>
+            </ul>
+            <br></br>
 
-              <p className="font-medium">Juara 3 :</p>
+            <p className="font-medium">Juara 3 :</p>
             <ul className="list-decimal ml-5">
               <li className="font-medium">Piala Tetap</li>
               <li className="font-medium">Piagam</li>
               <li className="font-medium">Medali</li>
               <li className="font-medium">Uang Tunai</li>
-              </ul>
-
+            </ul>
           </div>
         </div>
       </div>
-            <div className="md:mx-20 mx-5 my-10 text-sm text-primary flex flex-col gap-3">
-              <div>
-              <p className="font-bold">Contact Us</p>
-              <p className="font-meddium">SMA/Sederajat : 0882-0205-12061 (Nila)</p>
-              <p className="font-medium">Mahasiswa : 0856-9671-5602 (Eka)</p>
-              <p className="font-medium">Mahasiswa LKTI: 0813-3799-3787 (Rifqi)</p>
-            </div>
-            </div>
-    
-
-
+      <div className="md:mx-20 mx-5 my-10 text-sm text-primary flex flex-col gap-3">
+        <div>
+          <p className="font-bold">Contact Us</p>
+          <p className="font-meddium">SMA/Sederajat : 0882-0205-12061 (Nila)</p>
+          <p className="font-medium">Mahasiswa : 0856-9671-5602 (Eka)</p>
+          <p className="font-medium">Mahasiswa LKTI: 0813-3799-3787 (Rifqi)</p>
+        </div>
+      </div>
     </>
   );
 };

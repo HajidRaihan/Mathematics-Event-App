@@ -5,7 +5,7 @@ import { RequestApi } from "../../helper/RequestApi";
 import ChangeStatus from "../../components/ChangeStatus";
 import EditIcon from "../../../src/assets/edit-icon.svg";
 import ChangeStatusModal from "../../components/ChangeStatusModal";
-import PdfViewer from "../../components/PdfViewer";
+// import PdfViewer from "../../components/PdfViewer";
 
 const DaftarPeserta = () => {
   const [dataPeserta, setDataPeserta] = useState();

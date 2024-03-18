@@ -11,6 +11,14 @@ import DaftarMahasiswa from "./pages/admin/DaftarMahasiswa";
 import DaftarInstansi from "./pages/admin/DaftarInstansi";
 import PendaftaranLkti from "./pages/PendaftaranLkti";
 import DaftarLktmn from "./pages/admin/DaftarLktmn";
+// import Pengumuman from "./pages/Pengumuman";
+
+// import { pdfjs } from "react-pdf";
+
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//   "pdfjs-dist/build/pdf.worker.min.js",
+//   import.meta.url
+// ).toString();
 
 function App() {
   return (
@@ -27,6 +35,7 @@ function App() {
         <Route path="/admin/peserta/mahasiswa" element={<DaftarMahasiswa />} />
         <Route path="/admin/peserta/lktmn" element={<DaftarLktmn />} />
         <Route path="/admin/instansi" element={<DaftarInstansi />} />
+        {/* <Route path="/pengumuman" element={<Pengumuman />} /> */}
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
