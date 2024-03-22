@@ -38,7 +38,7 @@ const Home = () => {
                 "https://drive.google.com/drive/folders/1hCSbSk_rHbfTcwA_hMF4HJZ2dYzgqIId?usp=sharing"
               }
               target="_blank"
-              className="text-center w-[400px] text-primary uppercase text-base py-1 bg-white rounded-lg font-semibold mt-5"
+              className="md:text-base text-xs text-center w-[300px] md:w-[400px] text-primary uppercase py-1 bg-white rounded-lg font-semibold mt-5"
               // onClick={() => navigate("/pendaftaran-peserta")}
             >
               Pengumuman Penilaian Abstrak LKTMN
