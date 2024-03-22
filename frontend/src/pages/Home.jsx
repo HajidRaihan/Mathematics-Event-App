@@ -284,6 +284,15 @@ const Home = () => {
           <ol className="list-decimal ml-5">
             <li>Pendaftaran abstrak : Gratis</li>
             <li>Pengumpulan Full Paper : Rp.80.000/Tim</li>
+                <Link
+          to={"https://forms.gle/s7tUtM5sdVe4CJ4T6"}
+          target="_blank"
+          className="text-center w-[400px] text-primary uppercase text-base py-1 bg-white rounded-lg font-semibold mt-5"
+          style={{ color: "blue" }}
+          >
+          Kumpul Full Paper
+          </Link>
+
           </ol>
         </div>
       </div>
